@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Payment screening{% endblock %}
+{% block content %}
+<h1>Payment screening</h1>
+{% if can('screenings.upload') %}<p><a class="button" href="/screenings/new">Screen a payment file</a></p>{% endif %}
+<div class="table-wrap"><table><tr><th>File</th><th>Screened</th><th>Source</th><th>Entries</th><th>Credits</th><th>Risk</th><th>Status</th></tr>
+{% for r in runs %}<tr><td><a href="/screenings/{{ r.id }}">{{ r.filename }}</a></td><td>{{ r.created_at|dt }}</td><td>{{ r.source }}</td><td>{{ r.entry_count }}</td><td>{{ r.total_credit_cents|money }}</td>
+<td><span class="badge sev-{{ r.risk_level }}">{{ r.risk_level }}</span></td><td><span class="badge st-{{ r.status }}">{{ r.status.replace('_',' ') }}</span></td></tr>
+{% else %}<tr><td colspan="7">No screenings yet.</td></tr>{% endfor %}</table></div>
+{% endblock %}

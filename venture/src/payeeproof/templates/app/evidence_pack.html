@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}Evidence pack{% endblock %}
+{% block content %}
+<h1>Fraud-monitoring evidence pack</h1>
+<p><strong>{{ pack.organisation.name }}</strong> · period {{ pack.period.start[:10] }} to {{ pack.period.end[:10] }} · generated {{ pack.generated_at[:19] }} UTC</p>
+<p class="small muted">{{ pack.disclaimer }}</p>
+<h2>Controls</h2><ul>{% for c in pack.controls %}<li><strong>{{ c.name }}</strong>: {{ c.description }}</li>{% endfor %}</ul>
+<h2>Control settings</h2><div class="table-wrap"><table>{% for k, v in pack.control_settings.items() %}<tr><td>{{ k.replace('_',' ') }}</td><td>{{ v }}</td></tr>{% endfor %}</table></div>
+<h2>Vendor master</h2><p>{{ pack.vendor_master.vendors }} vendors · accounts by status: {{ pack.vendor_master.bank_accounts_by_status }} · flagged accounts: {{ pack.vendor_master.flagged_accounts }}</p>
+<h2>Change requests</h2><p>{{ pack.change_requests.total }} total · by status {{ pack.change_requests.by_status }} · by channel {{ pack.change_requests.by_channel }} · rejected as suspected fraud: {{ pack.change_requests.rejected_suspected_fraud }}</p>
+<h2>Verifications</h2><p>{{ pack.verifications.total }} · {{ pack.verifications.by_method_outcome }}</p>
+<h2>Payment screening</h2><p>{{ pack.screening.runs }} runs · {{ pack.screening.entries_screened }} entries · {{ pack.screening.credit_value_screened_cents|money }} screened · by status {{ pack.screening.by_status }} · override approvals: {{ pack.screening.override_approvals }}</p>
+<div class="table-wrap"><table><tr><th>Rule</th><th>Findings</th></tr>{% for code, n in pack.screening.findings_by_rule.items() %}<tr><td>{{ code }} {{ rules[code].title if code in rules else '' }}</td><td>{{ n }}</td></tr>{% endfor %}</table></div>
+<h2>Audit trail</h2><p>{{ 'Verified' if pack.audit_chain.verified else 'FAILED: ' ~ pack.audit_chain.failure }} · {{ pack.audit_chain.events }} events · head <span class="mono">{{ pack.audit_chain.head_hash }}</span></p>
+<h2>Annual review</h2>{% if pack.annual_review %}<p>Last reviewed {{ pack.annual_review.last_reviewed_at[:10] }}, next due {{ pack.annual_review.next_due_at[:10] }}.</p>{% else %}<p>No annual review signed.</p>{% endif %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Audit log{% endblock %}
+{% block content %}
+<h1>Audit log</h1>
+<p><a class="button secondary" href="/audit/verify">Verify hash chain</a> <a class="button secondary" href="/audit/export.csv">Export CSV</a></p>
+<div class="table-wrap"><table><tr><th>#</th><th>When</th><th>Actor</th><th>Action</th><th>Subject</th><th>Details</th></tr>
+{% for e in events %}<tr><td>{{ e.seq }}</td><td>{{ e.occurred_at|dt }}</td><td>{{ e.actor_label or e.actor_type }}</td><td>{{ e.action }}</td><td class="small">{{ e.subject_type or '' }} {{ (e.subject_id or '')[:8] }}</td><td class="small mono">{{ e.data|tojson }}</td></tr>
+{% else %}<tr><td colspan="6">No events.</td></tr>{% endfor %}</table></div>
+{% if next_before %}<p><a href="/audit?before={{ next_before }}">Older events →</a></p>{% endif %}
+{% endblock %}

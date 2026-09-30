@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Confirm a payment-detail change{% endblock %}
+{% block content %}
+<div class="card narrow">
+<h1>Did you request this change?</h1>
+<p><strong>{{ org.name }}</strong> received a request to change
+{% if cr.kind == 'bank_account' %}<strong>{{ vendor.name }}</strong>'s payment account to one ending in <strong>{{ cr.proposed_account_last4 }}</strong>{% else %}the contact details they hold for <strong>{{ vendor.name }}</strong>{% endif %}.</p>
+<p class="small muted">This page never asks for passwords or bank log-in details.</p>
+<form class="stack" method="post" action="/attest/{{ token }}">
+<label for="rn">Your name</label><input id="rn" name="responder_name" type="text" required maxlength="200">
+<button type="submit" name="response" value="confirmed">Yes, I requested this change</button>
+<button type="submit" name="response" value="denied" class="danger">No, I did NOT request this</button>
+</form></div>
+{% endblock %}

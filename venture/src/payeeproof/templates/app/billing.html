@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}Billing{% endblock %}
+{% block content %}
+<h1>Billing</h1>
+<div class="card"><p>Current plan: <strong>{{ current.name }}</strong>{% if auth.org.subscription_status %} · subscription {{ auth.org.subscription_status.replace('_',' ') }}{% endif %}{% if auth.org.current_period_end %} · renews {{ auth.org.current_period_end|dt }}{% endif %}</p>
+{% if auth.org.subscription_status == 'past_due' %}<div class="warn">Your last payment failed. Update your payment method to keep paid features.</div>{% endif %}
+{% if not billing_enabled %}<div class="warn">Online billing is not configured on this deployment. Contact sales to upgrade.</div>{% endif %}
+{% if billing_enabled and auth.org.stripe_customer_id %}<form method="post" action="/billing/portal"><input type="hidden" name="csrf_token" value="{{ csrf }}"><button type="submit" class="secondary">Manage payment method & invoices</button></form>{% endif %}
+</div>
+<div class="grid">
+{% for key, p in plans.items() if key != 'free' %}
+<div class="card"><h3>{{ p.name }}</h3><div class="stat">${{ p.monthly_usd }}<span class="small muted">/month</span></div><div class="small muted">or ${{ '{:,}'.format(p.annual_usd) }}/year (save ~15%)</div>
+<ul class="small"><li>{{ '{:,}'.format(p.max_vendors) }} vendors</li><li>{{ 'Unlimited' if p.max_screenings_per_month is none else p.max_screenings_per_month }} file screenings / month</li><li>{{ p.max_users }} users</li><li>{{ 'API access' if p.api_access else 'No API access' }}</li></ul>
+{% if billing_enabled %}<form method="post" action="/billing/checkout"><input type="hidden" name="csrf_token" value="{{ csrf }}"><input type="hidden" name="plan" value="{{ key }}">
+<select name="interval"><option value="annual">Annual</option><option value="monthly">Monthly</option></select><button type="submit" {% if current.key == key %}disabled{% endif %}>{{ 'Current plan' if current.key == key else 'Choose ' ~ p.name }}</button></form>{% endif %}
+</div>{% endfor %}
+</div>
+<p class="small muted">Free plan: 25 vendors, 1 file screening per month, 1 user.</p>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}{% block title %}{{ v.name }}{% endblock %}
+{% block content %}
+<h1>{{ v.name }}</h1>
+<div class="card"><div class="grid">
+<div><div class="muted small">Legal name</div>{{ v.legal_name or '—' }}</div>
+<div><div class="muted small">ERP reference</div>{{ v.external_ref or '—' }}</div>
+<div><div class="muted small">Known contact</div>{{ v.contact_name or '—' }}</div>
+<div><div class="muted small">Known phone</div>{{ v.contact_phone or '—' }}</div>
+<div><div class="muted small">Known email</div>{{ v.contact_email or '—' }}</div>
+<div><div class="muted small">Contacts last changed</div>{{ v.contact_updated_at|dt }}</div>
+</div></div>
+<h2>Bank accounts</h2>
+<div class="table-wrap"><table><tr><th>Routing</th><th>Account</th><th>Type</th><th>Status</th><th>Verified</th><th></th></tr>
+{% for a in accounts %}<tr><td class="mono">{{ a.routing_number }}</td><td class="mono">••••{{ a.account_last4 }}</td><td>{{ a.account_type }}</td><td><span class="badge st-{{ a.status }}">{{ a.status }}</span></td><td>{{ a.verified_at|dt }}</td>
+<td>{% if a.status == 'unverified' and can('changes.create') %}<form method="post" action="/vendors/{{ v.id }}/accounts/{{ a.id }}/baseline"><input type="hidden" name="csrf_token" value="{{ csrf }}"><button type="submit" class="secondary">Verify this account</button></form>{% endif %}</td></tr>
+{% else %}<tr><td colspan="6">No bank accounts on file.</td></tr>{% endfor %}</table></div>
+{% if can('changes.create') %}
+<div class="grid">
+<div class="card"><h3>Record a new or changed bank account</h3>
+{% if bank_error %}<div class="error">{{ bank_error }}</div>{% endif %}
+<form class="stack" method="post" action="/vendors/{{ v.id }}/changes/bank"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="routing">Routing number</label><input id="routing" name="routing" type="text" inputmode="numeric" required maxlength="9">
+<label for="account">Account number</label><input id="account" name="account" type="password" autocomplete="off" required maxlength="17">
+<label for="account_confirm">Confirm account number</label><input id="account_confirm" name="account_confirm" type="password" autocomplete="off" required maxlength="17">
+<label for="account_type">Type</label><select id="account_type" name="account_type"><option value="checking">Checking</option><option value="savings">Savings</option></select>
+<label for="channel">How was the request received?</label><select id="channel" name="channel" required><option value="">Select…</option>{% for c in channels %}<option value="{{ c }}">{{ c.replace('_',' ') }}</option>{% endfor %}</select>
+<label for="untrusted_contact">Contact details given in the request (recorded, never used)</label><input id="untrusted_contact" name="untrusted_contact" type="text" maxlength="300">
+<label for="notes">Notes</label><textarea id="notes" name="notes" maxlength="2000"></textarea>
+<button type="submit">Create change request</button></form></div>
+<div class="card"><h3>Change known contact details</h3>
+{% if contact_error %}<div class="error">{{ contact_error }}</div>{% endif %}
+<p class="small muted">Contacts are the root of trust, so changing them also needs verification through the <em>current</em> known contacts, plus a second approver.</p>
+<form class="stack" method="post" action="/vendors/{{ v.id }}/changes/contact"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="cn">New contact name</label><input id="cn" name="contact_name" type="text" maxlength="200">
+<label for="cp">New phone</label><input id="cp" name="contact_phone" type="tel">
+<label for="ce">New email</label><input id="ce" name="contact_email" type="email">
+<label for="ch2">How was the request received?</label><select id="ch2" name="channel" required><option value="">Select…</option>{% for c in channels %}<option value="{{ c }}">{{ c.replace('_',' ') }}</option>{% endfor %}</select>
+<label for="n2">Notes</label><textarea id="n2" name="notes" maxlength="2000"></textarea>
+<button type="submit">Create change request</button></form></div>
+</div>
+{% endif %}
+<h2>Change history</h2>
+<div class="table-wrap"><table><tr><th>Created</th><th>Kind</th><th>Proposed</th><th>Status</th></tr>
+{% for c in changes %}<tr><td><a href="/changes/{{ c.id }}">{{ c.created_at|dt }}</a></td><td>{{ c.kind.replace('_',' ') }}</td><td class="mono">{% if c.kind == 'bank_account' %}{{ c.proposed_routing }} / ••••{{ c.proposed_account_last4 }}{% else %}contact update{% endif %}</td><td><span class="badge st-{{ c.status }}">{{ c.status.replace('_',' ') }}</span></td></tr>
+{% else %}<tr><td colspan="4">No change requests.</td></tr>{% endfor %}</table></div>
+{% endblock %}

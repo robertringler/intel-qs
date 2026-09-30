@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Change requests{% endblock %}
+{% block content %}
+<h1>Change requests</h1>
+<p class="small">Filter: <a href="/changes">all</a> · <a href="/changes?status=pending_verification">awaiting verification</a> · <a href="/changes?status=verified">awaiting approval</a> · <a href="/changes?status=approved">approved</a> · <a href="/changes?status=rejected">rejected</a></p>
+<div class="table-wrap"><table><tr><th>Created</th><th>Vendor</th><th>Kind</th><th>Proposed</th><th>Channel</th><th>Flags</th><th>Status</th></tr>
+{% for c in items %}<tr><td><a href="/changes/{{ c.id }}">{{ c.created_at|dt }}</a></td><td>{{ names.get(c.vendor_id, '') }}</td><td>{{ c.kind.replace('_',' ') }}</td>
+<td class="mono">{% if c.kind == 'bank_account' %}{{ c.proposed_routing }} / ••••{{ c.proposed_account_last4 }}{% else %}contact{% endif %}</td><td>{{ c.channel.replace('_',' ') }}</td>
+<td>{% for f in c.risk_flags %}<span class="badge sev-{{ f.severity }}">{{ f.code.replace('_',' ') }}</span> {% endfor %}</td>
+<td><span class="badge st-{{ c.status }}">{{ c.status.replace('_',' ') }}</span></td></tr>
+{% else %}<tr><td colspan="7">No change requests.</td></tr>{% endfor %}</table></div>
+{% endblock %}

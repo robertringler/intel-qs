@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block title %}Join organisation{% endblock %}
+{% block content %}
+<div class="card narrow">
+<h1>You're invited</h1>
+<p>Join as <strong>{{ inv.role }}</strong> using <strong>{{ inv.email }}</strong>.</p>
+{% if signed_in_user %}
+  {% if signed_in_user.email == inv.email %}
+  <form method="post" action="/invite/{{ token }}"><input type="hidden" name="csrf_token" value="{{ csrf }}"><button type="submit">Accept invitation</button></form>
+  {% else %}<div class="warn">You are signed in as {{ signed_in_user.email }}. Sign out and use {{ inv.email }}.</div>{% endif %}
+{% else %}
+<form class="stack" method="post" action="/invite/{{ token }}">
+  <label for="full_name">Your name</label><input id="full_name" name="full_name" type="text" required>
+  <label for="password">Password (12+ characters)</label><input id="password" name="password" type="password" minlength="12" required autocomplete="new-password">
+  <button type="submit">Create account and join</button>
+</form>
+<p class="small muted">Already have an account with this email? <a href="/login?next=/invite/{{ token }}">Sign in first</a>.</p>
+{% endif %}
+</div>
+{% endblock %}

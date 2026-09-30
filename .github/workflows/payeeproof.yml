@@ -1,0 +1,76 @@
+name: PayeeProof CI
+permissions: read-all
+
+on:
+  push:
+    branches: [ master ]
+    paths: [ "venture/**", ".github/workflows/payeeproof.yml" ]
+  pull_request:
+    paths: [ "venture/**", ".github/workflows/payeeproof.yml" ]
+
+defaults:
+  run:
+    working-directory: venture
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Install (hash-pinned)
+        run: |
+          python -m pip install --upgrade pip
+          pip install --require-hashes -r requirements-dev.lock
+          pip install --no-deps -e .
+      - run: ruff check src tests scripts
+      - run: ruff format --check src tests scripts
+      - run: mypy
+      - run: bandit -r src -c pyproject.toml
+      - run: pip-audit -r requirements.lock
+
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_USER: pgadmin, POSTGRES_PASSWORD: pgadmin, POSTGRES_DB: postgres }
+        ports: [ "5432:5432" ]
+        options: >-
+          --health-cmd "pg_isready -U pgadmin" --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      PP_TEST_ADMIN_URL: postgresql://pgadmin:pgadmin@127.0.0.1:5432/postgres
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Install (hash-pinned)
+        run: |
+          python -m pip install --upgrade pip
+          pip install --require-hashes -r requirements-dev.lock
+          pip install --no-deps -e .
+      - name: Unit, integration, security, property & fuzz tests (with coverage)
+        run: pytest -m "not perf and not e2e" --cov=payeeproof --cov-report=term-missing:skip-covered --cov-fail-under=80
+      - name: Performance tests
+        run: pytest -m perf -q
+      - name: Browser end-to-end test
+        run: |
+          pip install playwright==1.63.0
+          python -m playwright install --with-deps chromium
+          pytest -m e2e -q
+      - name: Research & financial models reproduce
+        run: |
+          pip install numpy==2.4.6 scipy==1.17.1
+          python research/statistics/ev_model.py > /dev/null
+          python research/falsification/stress_test.py > /dev/null
+          python financial/model.py > /dev/null
+
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build container
+        run: docker build -t payeeproof:ci .
+      - name: Smoke (image imports and CLI runs)
+        run: docker run --rm payeeproof:ci payeeproof gen-keys > /dev/null

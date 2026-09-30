@@ -1,0 +1,92 @@
+{% extends "base.html" %}{% block title %}Change request{% endblock %}
+{% block content %}
+<h1>Change request · {{ v.name }}</h1>
+<div class="card"><div class="grid">
+<div><div class="muted small">Status</div><span class="badge st-{{ cr.status }}">{{ cr.status.replace('_',' ') }}</span></div>
+<div><div class="muted small">Kind</div>{{ cr.kind.replace('_',' ') }}</div>
+{% if cr.kind == 'bank_account' %}<div><div class="muted small">Proposed account</div><span class="mono">{{ cr.proposed_routing }} / ••••{{ cr.proposed_account_last4 }} ({{ cr.proposed_account_type }})</span></div>
+{% else %}<div><div class="muted small">Proposed contacts</div>{% for k, val in (cr.proposed_contact or {}).items() if val %}<div class="small">{{ k.replace('contact_','') }}: {{ val }}</div>{% endfor %}</div>{% endif %}
+<div><div class="muted small">Received via</div>{{ cr.channel.replace('_',' ') }}</div>
+<div><div class="muted small">Requested by</div>{{ users.get(cr.created_by, 'API') }} · {{ cr.created_at|dt }}</div>
+{% if cr.decided_at %}<div><div class="muted small">Decided</div>{{ users.get(cr.decided_by, '') }} · {{ cr.decided_at|dt }}</div>{% endif %}
+</div>
+{% if cr.decision_reason %}<p class="small"><strong>Decision note:</strong> {{ cr.decision_reason }}</p>{% endif %}
+{% for f in cr.risk_flags %}<div class="{{ 'error' if f.severity in ('high','critical') else 'warn' }} small"><strong>{{ f.code.replace('_',' ') }}:</strong> {{ f.message }}</div>{% endfor %}
+</div>
+
+<div class="card"><h2>Known contacts (captured before this request)</h2>
+<p>Verify <strong>only</strong> through these. Phone: <span class="mono">{{ cr.known_phone_snapshot or 'none on file' }}</span> · Email: <span class="mono">{{ cr.known_email_snapshot or 'none on file' }}</span> · on file for {{ cr.known_contact_age_days }} day(s).</p>
+{% if cr.untrusted_contact_in_request %}<div class="warn small">The request itself supplied: <span class="mono">{{ cr.untrusted_contact_in_request }}</span>. <strong>Do not call or email this.</strong> Fraudsters supply their own contact details.</div>{% endif %}
+</div>
+
+<h2>Verification record</h2>
+<div class="table-wrap"><table><tr><th>When</th><th>Method</th><th>Outcome</th><th>By</th><th>Details</th></tr>
+{% for x in verifications %}<tr><td>{{ x.created_at|dt }}</td><td>{{ x.method }}</td><td><span class="badge st-{{ x.outcome }}">{{ x.outcome }}</span></td><td>{{ users.get(x.performed_by, 'vendor' if x.method == 'attestation' and x.outcome != 'sent' else '') }}</td>
+<td class="small">{% for k, val in x.details.items() if val not in (None, '', []) and k != 'notes' %}<div>{{ k.replace('_',' ') }}: {{ val if val is not iterable or val is string else val|join('; ') }}</div>{% endfor %}{% if x.details.notes %}<div>notes: {{ x.details.notes }}</div>{% endif %}</td></tr>
+{% else %}<tr><td colspan="5">No verification performed yet.</td></tr>{% endfor %}</table></div>
+
+{% if cr.status in ('pending_verification','verified') and can('changes.verify') %}
+<div class="grid">
+<div class="card"><h3>Callback to the known phone</h3>
+{% if cr.known_phone_snapshot %}
+<ol class="small"><li>Call <span class="mono">{{ cr.known_phone_snapshot }}</span>. Do not use any number from the request.</li>
+<li>Ask the vendor whether they requested this change{% if cr.kind == 'bank_account' %}, and ask them to <strong>read you the last four digits</strong> of the new account. Do not read them out yourself{% endif %}.</li>
+<li>Record who you spoke with.</li></ol>
+<form class="stack" method="post" action="/changes/{{ cr.id }}/callback"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="dn">Number dialled</label><input id="dn" name="dialed_number" type="tel" required>
+<label for="sw">Person spoken with</label><input id="sw" name="spoke_with" type="text" maxlength="200">
+{% if cr.kind == 'bank_account' %}<label for="rb">Last 4 digits the vendor read back</label><input id="rb" name="readback_last4" type="text" maxlength="4" inputmode="numeric">{% endif %}
+<label for="oc">Outcome</label><select id="oc" name="outcome" required><option value="">Select…</option><option value="confirmed">Vendor confirmed they requested it</option><option value="denied">Vendor did NOT request it (suspected fraud)</option><option value="no_answer">No answer / could not confirm</option></select>
+<label for="cn">Notes</label><textarea id="cn" name="notes" maxlength="2000"></textarea>
+<button type="submit">Record callback</button></form>
+{% else %}<p class="small muted">No known phone number. Use attestation or an external verification.</p>{% endif %}
+</div>
+<div class="card"><h3>Vendor attestation email</h3>
+{% if cr.known_email_snapshot %}
+<p class="small">Sends a one-time link to <span class="mono">{{ cr.known_email_snapshot }}</span> asking the vendor to confirm or deny. A denial rejects the request and flags the account.</p>
+<p class="small muted">If the vendor's mailbox itself may be compromised, prefer a callback.</p>
+<form method="post" action="/changes/{{ cr.id }}/attestation"><input type="hidden" name="csrf_token" value="{{ csrf }}"><button type="submit" class="secondary">Send attestation request</button></form>
+{% else %}<p class="small muted">No known email on file.</p>{% endif %}
+</div>
+<div class="card"><h3>External verification</h3>
+<p class="small">Record an independent check performed elsewhere, such as your bank's account-validation service, with its reference.</p>
+<form class="stack" method="post" action="/changes/{{ cr.id }}/external"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="pv">Provider / method</label><input id="pv" name="provider" type="text" maxlength="100" required>
+<label for="rf">Reference</label><input id="rf" name="reference" type="text" maxlength="200" required>
+<label for="eo">Outcome</label><select id="eo" name="outcome"><option value="pass">Pass</option><option value="fail">Fail</option></select>
+<label for="en">Notes</label><textarea id="en" name="notes" maxlength="2000"></textarea>
+<button type="submit" class="secondary">Record</button></form></div>
+{% if cr.kind == 'bank_account' %}
+<div class="card"><h3>Prenote (supporting check)</h3>
+<p class="small">A zero-dollar prenote confirms that the account exists and accepts ACH. It does <strong>not</strong> prove who owns the account, so it cannot verify a change on its own.</p>
+{% if nacha_ready %}
+<form method="post" action="/changes/{{ cr.id }}/prenote" class="row"><input type="hidden" name="csrf_token" value="{{ csrf }}"><input type="date" name="effective_date" value="{{ today }}"><button type="submit" class="secondary">Download prenote file</button></form>
+<form method="post" action="/changes/{{ cr.id }}/prenote/resolve" class="row"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<select name="returned"><option value="no">No return received (3+ banking days)</option><option value="yes">Returned / NOC received</option></select><input type="text" name="return_code" placeholder="R03, C01…" maxlength="4"><button type="submit" class="secondary">Record result</button></form>
+{% else %}<p class="small muted">Configure ACH origination details in Settings to generate prenotes.</p>{% endif %}
+</div>
+{% endif %}
+</div>
+{% endif %}
+
+{% if cr.status in ('pending_verification','verified') %}
+<div class="card"><h2>Decision</h2>
+{% if can('changes.approve') %}
+  {% if cr.status == 'verified' %}
+    {% if is_requester %}<p class="warn small">You requested this change, so another approver must approve it.</p>
+    {% else %}
+    <form class="stack" method="post" action="/changes/{{ cr.id }}/approve" data-confirm="Approve this change? The account becomes the verified payee account."><input type="hidden" name="csrf_token" value="{{ csrf }}">
+    <label for="ac">Approval comment</label><input id="ac" name="comment" type="text" maxlength="2000"><button type="submit">Approve change</button></form>
+    {% endif %}
+  {% else %}<p class="small muted">Approval becomes available after a callback, attestation or external verification passes.</p>{% endif %}
+  <form class="stack" method="post" action="/changes/{{ cr.id }}/reject"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+  <label for="rr">Reject — reason</label><input id="rr" name="reason" type="text" maxlength="2000" required>
+  <label><input type="checkbox" name="suspected_fraud" value="yes"> Suspected fraud (flags this account)</label>
+  <button type="submit" class="danger">Reject</button></form>
+{% endif %}
+{% if is_requester or can('changes.approve') %}
+<form method="post" action="/changes/{{ cr.id }}/cancel" data-confirm="Cancel this change request?"><input type="hidden" name="csrf_token" value="{{ csrf }}"><button type="submit" class="secondary">Cancel request</button></form>
+{% endif %}
+</div>
+{% endif %}
+{% endblock %}

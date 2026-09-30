@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+{% if not nacha_ready and can('settings.manage') %}<div class="warn">Add your ACH origination details in <a href="/settings">Settings</a> to generate prenote files.</div>{% endif %}
+{% if review_due %}<div class="warn">Your annual control review {{ 'has never been signed' if not review else 'is due by ' ~ (review.next_due_at|dt) }}. Nacha requires fraud-monitoring processes to be reviewed at least annually. <a href="/evidence">Review now</a>.</div>{% endif %}
+<div class="grid">
+  <a class="card" href="/changes?status=pending_verification"><div class="muted small">Awaiting verification</div><div class="stat">{{ pending_verify }}</div></a>
+  <a class="card" href="/changes?status=verified"><div class="muted small">Awaiting approval</div><div class="stat">{{ pending_approve }}</div></a>
+  <a class="card" href="/screenings"><div class="muted small">Payment runs needing review</div><div class="stat">{{ blocked }}</div></a>
+  <a class="card" href="/vendors"><div class="muted small">Vendors</div><div class="stat">{{ vendors_n }}</div></a>
+  <div class="card"><div class="muted small">Accounts flagged as fraud</div><div class="stat">{{ flagged }}</div></div>
+</div>
+<h2>Recent payment screenings</h2>
+{% if runs %}
+<div class="table-wrap"><table><tr><th>File</th><th>Screened</th><th>Entries</th><th>Credits</th><th>Status</th></tr>
+{% for r in runs %}<tr><td><a href="/screenings/{{ r.id }}">{{ r.filename }}</a></td><td>{{ r.created_at|dt }}</td><td>{{ r.entry_count }}</td><td>{{ r.total_credit_cents|money }}</td><td><span class="badge st-{{ r.status }}">{{ r.status.replace('_',' ') }}</span></td></tr>{% endfor %}
+</table></div>
+{% else %}<div class="card">No files screened yet. {% if can('screenings.upload') %}<a href="/screenings/new">Screen your next payment file</a> before you upload it to your bank.{% endif %}</div>{% endif %}
+{% endblock %}

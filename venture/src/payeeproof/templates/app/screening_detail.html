@@ -1,0 +1,45 @@
+{% extends "base.html" %}{% block title %}Screening · {{ run.filename }}{% endblock %}
+{% block content %}
+<h1>{{ run.filename }}</h1>
+<div class="card"><div class="grid">
+<div><div class="muted small">Status</div><span class="badge st-{{ run.status }}">{{ run.status.replace('_',' ') }}</span></div>
+<div><div class="muted small">Risk</div><span class="badge sev-{{ run.risk_level }}">{{ run.risk_level }}</span></div>
+<div><div class="muted small">Entries</div>{{ run.entry_count }}</div>
+<div><div class="muted small">Credits / debits</div>{{ run.total_credit_cents|money }} / {{ run.total_debit_cents|money }}</div>
+<div><div class="muted small">Approvals required</div>{{ run.required_approvals }}</div>
+<div><div class="muted small">File SHA-256</div><span class="mono small">{{ run.file_sha256 }}</span></div>
+</div>
+{% if run.status == 'released' %}<p>Released {{ run.released_at|dt }}. Before uploading, confirm your bank file's SHA-256 matches the value above. <a href="/screenings/{{ run.id }}/certificate.json">Download screening certificate</a> <span class="small muted mono">sha256 {{ run.certificate_sha256 }}</span></p>{% endif %}
+{% if run.status == 'rejected' %}<div class="error">Rejected. Do not upload this file to your bank.</div>{% endif %}
+{% for issue in run.integrity_issues %}<div class="error small"><strong>File integrity:</strong> {{ issue }}</div>{% endfor %}
+</div>
+
+<h2>Findings</h2>
+{% set flagged = entries|selectattr('findings')|list %}
+{% if not flagged %}<div class="card">No findings. All entries go to verified accounts with normal amounts.</div>{% endif %}
+<div class="table-wrap"><table><tr><th>#</th><th>Receiver</th><th>Vendor</th><th>Account</th><th>Amount</th><th>Findings</th></tr>
+{% for e in entries %}<tr><td>{{ e.entry_index + 1 }}</td><td>{{ e.receiver_name }}</td><td>{{ vnames.get(e.vendor_id, '—') }}</td><td class="mono">{{ e.routing }} / ••••{{ e.account_last4 }}</td><td>{{ e.amount_cents|money }}</td>
+<td>{% for f in e.findings %}<div><span class="badge sev-{{ f.severity }}">{{ f.code }} {{ f.title }}</span> <span class="small">{{ f.message }}</span></div>{% else %}<span class="badge st-clear">ok</span>{% endfor %}</td></tr>{% endfor %}
+</table></div>
+
+<h2>Approvals</h2>
+<div class="table-wrap"><table><tr><th>When</th><th>User</th><th>Decision</th><th>Comment</th><th>Override reason</th></tr>
+{% for x in approvals %}<tr><td>{{ x.a.created_at|dt }}</td><td>{{ users.get(x.a.user_id, '') }}</td><td>{{ x.a.decision }}</td><td>{{ x.comment or '' }}</td><td>{{ x.override or '' }}</td></tr>
+{% else %}<tr><td colspan="5">None yet. Uploaded by {{ users.get(run.uploaded_by, 'API') }}.</td></tr>{% endfor %}</table></div>
+
+{% if run.status not in ('released','rejected') and can('screenings.release') %}
+<div class="card"><h2>Release decision</h2>
+{% if is_uploader %}<p class="warn small">You uploaded this file, so another approver must release it (segregation of duties).</p>
+{% elif already_approved %}<p class="small">You approved this run. {{ run.required_approvals - approvals|length }} more approval(s) needed.</p>
+{% else %}
+<form class="stack" method="post" action="/screenings/{{ run.id }}/approve"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+{% if run.status == 'blocked' %}<div class="error small">Blocked by high-risk findings. Resolve them first, for example by verifying the account through a change request and re-screening. To release anyway, record an override reason.</div>
+<label for="or">Override reason (required)</label><textarea id="or" name="override_reason" maxlength="2000" required></textarea>{% endif %}
+<label for="cm">Comment</label><input id="cm" name="comment" type="text" maxlength="2000">
+<button type="submit">Approve release</button></form>
+{% endif %}
+<form class="stack" method="post" action="/screenings/{{ run.id }}/reject"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="rj">Reject — reason</label><input id="rj" name="reason" type="text" maxlength="2000" required><button class="danger" type="submit">Reject run</button></form>
+</div>
+{% endif %}
+{% endblock %}

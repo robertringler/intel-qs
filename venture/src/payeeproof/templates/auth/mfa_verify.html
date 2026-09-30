@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Two-factor authentication{% endblock %}
+{% block content %}
+<div class="card narrow">
+<h1>Enter your authentication code</h1>
+<form class="stack" method="post" action="/mfa/verify">
+  <input type="hidden" name="csrf_token" value="{{ csrf }}"><input type="hidden" name="next" value="{{ next }}">
+  <label for="code">6-digit code or recovery code</label><input id="code" name="code" type="text" autocomplete="one-time-code" required>
+  <button type="submit">Verify</button>
+</form>
+</div>
+{% endblock %}

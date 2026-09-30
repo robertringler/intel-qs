@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Add vendor{% endblock %}
+{% block content %}
+<h1>Add vendor</h1>
+<div class="card narrow">
+<p class="small muted">The phone and email recorded here become the <strong>known contacts</strong> used for all future verification. Take them from an independent source — a signed contract, the vendor's website, a prior invoice you already trusted — never from an email asking to change payment details.</p>
+<form class="stack" method="post" action="/vendors"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="name">Vendor name</label><input id="name" name="name" type="text" required maxlength="200" value="{{ form.name or '' }}">
+<label for="legal_name">Legal name (optional)</label><input id="legal_name" name="legal_name" type="text" maxlength="200" value="{{ form.legal_name or '' }}">
+<label for="external_ref">ERP vendor ID (optional)</label><input id="external_ref" name="external_ref" type="text" maxlength="100" value="{{ form.external_ref or '' }}">
+<label for="contact_name">Contact name</label><input id="contact_name" name="contact_name" type="text" maxlength="200" value="{{ form.contact_name or '' }}">
+<label for="contact_phone">Known phone</label><input id="contact_phone" name="contact_phone" type="tel" value="{{ form.contact_phone or '' }}">
+<label for="contact_email">Known email</label><input id="contact_email" name="contact_email" type="email" value="{{ form.contact_email or '' }}">
+<button type="submit">Create vendor</button></form></div>
+{% endblock %}

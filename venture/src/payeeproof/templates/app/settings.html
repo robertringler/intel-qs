@@ -1,0 +1,38 @@
+{% extends "base.html" %}{% block title %}Settings{% endblock %}
+{% block content %}
+<h1>Settings</h1>
+<div class="card"><h2>Organisation</h2>
+<form method="post" action="/settings/org" class="row"><input type="hidden" name="csrf_token" value="{{ csrf }}"><input type="text" name="name" value="{{ auth.org.name }}" maxlength="200" required><button type="submit" class="secondary">Rename</button></form></div>
+
+<div class="card"><h2>Control settings</h2>
+<form class="stack" method="post" action="/settings/controls"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="rcd">Recently-changed window (days)</label><input id="rcd" name="recent_change_days" type="number" min="1" max="90" value="{{ s.recent_change_days }}">
+<label for="dat">Dual-approval threshold (USD, per run total or single entry)</label><input id="dat" name="dual_approval_threshold" type="text" value="{{ '%.2f'|format(s.dual_approval_threshold_cents/100) }}">
+<label for="lra">Large round-amount flag from (USD)</label><input id="lra" name="large_round_amount" type="text" value="{{ '%.2f'|format(s.large_round_amount_cents/100) }}">
+<label for="amh">Minimum payment history for anomaly detection</label><input id="amh" name="anomaly_min_history" type="number" min="3" max="50" value="{{ s.anomaly_min_history }}">
+<label for="az">Anomaly robust z-score threshold</label><input id="az" name="anomaly_z" type="text" value="{{ s.anomaly_z }}">
+<label for="nmt">Name-match threshold (0–1)</label><input id="nmt" name="name_match_threshold" type="text" value="{{ s.name_match_threshold }}">
+<label for="att">Attestation link lifetime (hours)</label><input id="att" name="attestation_ttl_hours" type="number" min="1" max="168" value="{{ s.attestation_ttl_hours }}">
+<label for="kca">Warn when known contacts changed within (days)</label><input id="kca" name="known_contact_min_age_days" type="number" min="0" max="365" value="{{ s.known_contact_min_age_days }}">
+<label><input type="checkbox" name="sod_approver_not_verifier" {% if s.sod_approver_not_verifier %}checked{% endif %}> The sole verifier of a change cannot approve it</label>
+<label><input type="checkbox" name="block_on_integrity_issues" {% if s.block_on_integrity_issues %}checked{% endif %}> Block runs whose control totals do not match</label>
+<button type="submit">Save controls</button></form></div>
+
+<div class="card"><h2>ACH origination details (for prenote files)</h2>
+<form class="stack" method="post" action="/settings/nacha"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="idst">Immediate destination (your bank's routing number)</label><input id="idst" name="immediate_destination" type="text" maxlength="9" value="{{ nacha.immediate_destination or '' }}" required>
+<label for="dname">Bank name</label><input id="dname" name="destination_name" type="text" maxlength="23" value="{{ nacha.destination_name or '' }}" required>
+<label for="iorg">Immediate origin (as assigned by your bank)</label><input id="iorg" name="immediate_origin" type="text" maxlength="10" value="{{ nacha.immediate_origin or '' }}" required>
+<label for="cname">Company name (16 characters max)</label><input id="cname" name="company_name" type="text" maxlength="16" value="{{ nacha.company_name or '' }}" required>
+<label for="cid">Company ID</label><input id="cid" name="company_id" type="text" maxlength="10" value="{{ nacha.company_id or '' }}" required>
+<label for="odfi">ODFI routing number</label><input id="odfi" name="odfi_routing" type="text" maxlength="9" value="{{ nacha.odfi_routing or '' }}" required>
+<button type="submit">Save ACH details</button></form></div>
+
+{% if network_enabled %}
+<div class="card"><h2>PayeeProof network (opt-in)</h2>
+<p class="small">When enabled, your organisation contributes keyed, anonymised fingerprints of accounts you verify or reject as fraud, and receives warnings when an account was flagged by another participant. Account numbers and your organisation's identity are never shared.</p>
+<form method="post" action="/settings/network"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label><input type="checkbox" name="enabled" {% if auth.org.network_participation %}checked{% endif %}> Participate in the network</label>
+<button type="submit" class="secondary">Save</button></form></div>
+{% endif %}
+{% endblock %}

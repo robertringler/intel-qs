@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Recovery codes{% endblock %}
+{% block content %}
+<div class="card narrow">
+<h1>Save your recovery codes</h1>
+<p>Each code can be used once if you lose your authenticator. Store them in your password manager. They will not be shown again.</p>
+<div class="codes" id="codes">{% for c in codes %}<div>{{ c }}</div>{% endfor %}</div>
+<button type="button" class="secondary" data-copy="codes">Copy</button>
+<p><a class="button" href="/dashboard">I have saved them — continue</a></p>
+</div>
+{% endblock %}

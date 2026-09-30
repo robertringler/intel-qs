@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}Team{% endblock %}
+{% block content %}
+<h1>Team</h1>
+<p class="small muted">Roles: <strong>owner/admin</strong> manage everything · <strong>approver</strong> verifies, approves changes and releases payment runs · <strong>clerk</strong> records changes, verifies and uploads files · <strong>auditor</strong> read-only.</p>
+<div class="table-wrap"><table><tr><th>User</th><th>Role</th><th></th></tr>
+{% for m, u in members %}<tr><td>{{ u.full_name }} <span class="small muted">{{ u.email }}</span></td>
+<td>{% if can('members.manage') and u.id != auth.user.id %}<form method="post" action="/members/{{ m.id }}/role" class="row"><input type="hidden" name="csrf_token" value="{{ csrf }}"><select name="role">{% for r in roles %}<option value="{{ r }}" {% if r == m.role %}selected{% endif %}>{{ r }}</option>{% endfor %}</select><button type="submit" class="secondary">Update</button></form>{% else %}{{ m.role }}{% endif %}</td>
+<td>{% if can('members.manage') and u.id != auth.user.id %}<form method="post" action="/members/{{ m.id }}/remove" data-confirm="Remove this member?"><input type="hidden" name="csrf_token" value="{{ csrf }}"><button type="submit" class="danger">Remove</button></form>{% endif %}</td></tr>{% endfor %}
+</table></div>
+{% if invites %}<h2>Pending invitations</h2><ul>{% for i in invites %}<li>{{ i.email }} ({{ i.role }}), expires {{ i.expires_at|dt }}</li>{% endfor %}</ul>{% endif %}
+{% if can('members.manage') %}
+<div class="card narrow"><h2>Invite a teammate</h2>
+<form class="stack" method="post" action="/members/invite"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="ie">Email</label><input id="ie" name="email" type="email" required>
+<label for="ir">Role</label><select id="ir" name="role">{% for r in roles if r != 'owner' %}<option value="{{ r }}">{{ r }}</option>{% endfor %}</select>
+<button type="submit">Send invitation</button></form></div>
+{% endif %}
+{% endblock %}

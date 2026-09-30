@@ -1,0 +1,46 @@
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1b2430;--muted:#5b6674;--line:#e3e7ec;--brand:#1f5eff;--brand-ink:#fff;
+--ok:#137a3a;--warn:#9a6700;--bad:#b42318;--crit:#7a0916;--info:#34506e;--radius:8px}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+header.top{background:#0f1b2d;color:#fff;padding:0 16px}
+header.top .wrap{display:flex;align-items:center;gap:18px;max-width:1200px;margin:0 auto;min-height:54px;flex-wrap:wrap}
+header.top a{color:#dbe4f3}header.top a.brand{color:#fff;font-weight:700;font-size:17px}
+header.top nav{display:flex;gap:14px;flex-wrap:wrap;flex:1}
+header.top .right{display:flex;gap:10px;align-items:center}
+header.top form{margin:0}header.top button.link{background:none;border:0;color:#dbe4f3;cursor:pointer;font:inherit;padding:0}
+main{max-width:1200px;margin:0 auto;padding:22px 16px 60px}
+h1{font-size:24px;margin:0 0 14px}h2{font-size:18px;margin:26px 0 10px}h3{font-size:16px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:0 0 16px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.stat{font-size:28px;font-weight:700}.muted{color:var(--muted)}.small{font-size:13px}
+table{width:100%;border-collapse:collapse;background:var(--card)}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:#fafbfc}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:16px}
+form.stack label{display:block;margin:10px 0 4px;font-weight:600;font-size:14px}
+input[type=text],input[type=email],input[type=password],input[type=tel],input[type=number],input[type=date],select,textarea{
+width:100%;max-width:520px;padding:8px 10px;border:1px solid #c9d1db;border-radius:6px;font:inherit;background:#fff}
+textarea{min-height:80px}
+button,.button{display:inline-block;background:var(--brand);color:var(--brand-ink);border:0;border-radius:6px;padding:8px 14px;
+font:inherit;font-weight:600;cursor:pointer;margin-top:10px}
+button.secondary,.button.secondary{background:#e8edf5;color:var(--ink)}
+button.danger{background:var(--bad)}button:disabled{opacity:.5;cursor:not-allowed}
+.inline{display:inline}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.flash{background:#e8f3ec;border:1px solid #b7dcc4;color:#0e4f27;padding:10px 12px;border-radius:6px;margin-bottom:14px}
+.error{background:#fdecea;border:1px solid #f5c2bd;color:#7a1a12;padding:10px 12px;border-radius:6px;margin-bottom:14px}
+.warn{background:#fff6e0;border:1px solid #f1d38a;color:#5c3d00;padding:10px 12px;border-radius:6px;margin-bottom:14px}
+.badge{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:700;background:#eef1f5;color:#344}
+.sev-critical{background:#fbe0e3;color:var(--crit)}.sev-high{background:#fdecea;color:var(--bad)}
+.sev-medium{background:#fff4d6;color:var(--warn)}.sev-low{background:#eef4ff;color:#23479b}.sev-info{background:#eef1f5;color:var(--info)}
+.st-clear,.st-released,.st-approved,.st-verified,.st-pass{background:#e3f4e8;color:var(--ok)}
+.st-blocked,.st-rejected,.st-fail,.st-denied{background:#fdecea;color:var(--bad)}
+.st-needs_review,.st-pending_verification,.st-sent{background:#fff4d6;color:var(--warn)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;word-break:break-all}
+.qr svg{width:200px;height:200px;background:#fff}
+.hero{padding:40px 0}.hero h1{font-size:34px}.hero p{font-size:18px;max-width:720px}
+.codes{columns:2;font-family:ui-monospace,monospace;font-size:16px}
+details summary{cursor:pointer;font-weight:600}
+@media (max-width:640px){header.top nav{order:3;width:100%;padding-bottom:8px}.hero h1{font-size:26px}}
+@media print{header.top,.noprint{display:none}body{background:#fff}.card{border:0}}
+.narrow{max-width:620px}

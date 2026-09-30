@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}Create account{% endblock %}
+{% block content %}
+<div class="card narrow">
+<h1>Create your PayeeProof workspace</h1>
+<form class="stack" method="post" action="/signup">
+  <label for="org_name">Company name</label><input id="org_name" name="org_name" type="text" required maxlength="200" value="{{ form.org_name or '' }}">
+  <label for="full_name">Your name</label><input id="full_name" name="full_name" type="text" required maxlength="200" value="{{ form.full_name or '' }}">
+  <label for="email">Work email</label><input id="email" name="email" type="email" required autocomplete="email" value="{{ form.email or '' }}">
+  <label for="password">Password (12+ characters)</label><input id="password" name="password" type="password" required minlength="12" autocomplete="new-password">
+  <label><input type="checkbox" name="accept_terms" value="yes" required> I agree to the terms of service and privacy policy.</label>
+  <button type="submit">Create account</button>
+</form>
+<p class="small muted">You will set up two-factor authentication next. Already have an account? <a href="/login">Sign in</a>.</p>
+</div>
+{% endblock %}

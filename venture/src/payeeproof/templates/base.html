@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}PayeeProof{% endblock %} · PayeeProof</title>
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/static/app.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="{{ '/dashboard' if auth else '/' }}">PayeeProof</a>
+  {% if auth %}
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/vendors">Vendors</a>
+    <a href="/changes">Change requests</a>
+    <a href="/screenings">Payment screening</a>
+    <a href="/evidence">Evidence</a>
+    <a href="/audit">Audit log</a>
+    {% if can('settings.manage') %}<a href="/settings">Settings</a>{% endif %}
+    <a href="/members">Team</a>
+    {% if can('apikeys.manage') %}<a href="/api-keys">API</a>{% endif %}
+    {% if can('billing.manage') %}<a href="/billing">Billing</a>{% endif %}
+  </nav>
+  <div class="right small">
+    <span>{{ auth.org.name }} · <span class="badge">{{ plan.name }}</span></span>
+    <a href="/account">{{ auth.user.email }}</a>
+    <form method="post" action="/logout"><input type="hidden" name="csrf_token" value="{{ csrf }}"><button class="link" type="submit">Sign out</button></form>
+  </div>
+  {% else %}
+  <nav></nav><div class="right"><a href="/login">Sign in</a> <a href="/signup">Start free</a></div>
+  {% endif %}
+</div></header>
+<main>
+{% if flash %}<div class="flash" role="status">{{ flash }}</div>{% endif %}
+{% if error %}<div class="error" role="alert">{{ error }}</div>{% endif %}
+{% block content %}{% endblock %}
+</main>
+</body>
+</html>

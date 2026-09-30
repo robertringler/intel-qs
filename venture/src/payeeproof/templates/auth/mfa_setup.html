@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Set up two-factor authentication{% endblock %}
+{% block content %}
+<div class="card narrow">
+<h1>Set up two-factor authentication</h1>
+<p>PayeeProof protects payment data, so an authenticator app is required. Scan this code with Google Authenticator, 1Password, Authy or similar.</p>
+<div class="qr">{{ qr | safe }}</div>
+<p class="small">Can't scan? Enter this key: <span class="mono" id="totp-secret">{{ secret }}</span></p>
+<form class="stack" method="post" action="/mfa/setup">
+  <input type="hidden" name="csrf_token" value="{{ csrf }}">
+  <label for="code">6-digit code</label><input id="code" name="code" type="text" inputmode="numeric" pattern="[0-9 ]{6,7}" autocomplete="one-time-code" required>
+  <button type="submit">Verify and enable</button>
+</form>
+</div>
+{% endblock %}

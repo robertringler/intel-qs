@@ -1,0 +1,48 @@
+# Local/staging stack: PostgreSQL + one-shot migration + web + worker.
+# Secrets come from .env (copy .env.example, then run `payeeproof gen-keys`). Never commit .env.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: pgadmin
+      POSTGRES_PASSWORD: ${PG_ADMIN_PASSWORD:?set PG_ADMIN_PASSWORD in .env}
+      POSTGRES_DB: postgres
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pgadmin"]
+      interval: 5s
+      retries: 20
+  provision:
+    build: .
+    depends_on: {db: {condition: service_healthy}}
+    env_file: .env
+    environment:
+      PP_ENV: development
+    command: ["payeeproof", "provision-db", "--admin-url", "postgresql://pgadmin:${PG_ADMIN_PASSWORD}@db:5432/postgres"]
+    restart: "no"
+  migrate:
+    build: .
+    depends_on: {provision: {condition: service_completed_successfully}}
+    env_file: .env
+    command: ["payeeproof", "migrate"]
+    restart: "no"
+  web:
+    build: .
+    depends_on: {migrate: {condition: service_completed_successfully}}
+    env_file: .env
+    ports: ["8000:8000"]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+  worker:
+    build: .
+    depends_on: {migrate: {condition: service_completed_successfully}}
+    env_file: .env
+    command: ["payeeproof", "worker"]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+volumes:
+  pgdata:

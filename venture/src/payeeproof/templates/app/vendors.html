@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Vendors{% endblock %}
+{% block content %}
+<h1>Vendors</h1>
+<form method="get" action="/vendors" class="row"><input type="text" name="q" value="{{ q }}" placeholder="Search by name"><button class="secondary" type="submit">Search</button>
+{% if can('vendors.write') %}<a class="button" href="/vendors/new">Add vendor</a> <a class="button secondary" href="/vendors/import">Import CSV</a>{% endif %}</form>
+<div class="table-wrap"><table><tr><th>Name</th><th>Reference</th><th>Known phone</th><th>Known email</th><th>Status</th></tr>
+{% for v in vendors %}<tr><td><a href="/vendors/{{ v.id }}">{{ v.name }}</a></td><td>{{ v.external_ref or '' }}</td><td>{{ v.contact_phone or '—' }}</td><td>{{ v.contact_email or '—' }}</td><td>{{ v.status }}</td></tr>
+{% else %}<tr><td colspan="5">No vendors yet.</td></tr>{% endfor %}</table></div>
+{% endblock %}

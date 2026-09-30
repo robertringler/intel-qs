@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}Evidence{% endblock %}
+{% block content %}
+<h1>Evidence & annual review</h1>
+<div class="card"><h2>Export evidence pack</h2>
+<p class="small">A summary of your controls, verifications, screenings, overrides and audit-chain status for a period. Use it for bank, auditor or insurer requests.</p>
+<form method="get" action="/evidence/pack" class="row"><label>From <input type="date" name="start"></label><label>To <input type="date" name="end"></label>
+<button type="submit" class="secondary">View printable pack</button></form>
+<form method="get" action="/evidence/pack.json" class="row"><input type="hidden" name="start" value=""><button type="submit" class="secondary">Download JSON (last 12 months)</button></form>
+</div>
+<div class="card"><h2>Annual control review</h2>
+{% if review %}<p>Last reviewed {{ review.reviewed_at|dt }}. Next due <strong>{{ review.next_due_at|dt }}</strong>.</p><p class="small muted">{{ review.notes }}</p>{% else %}<p class="warn">No review signed yet.</p>{% endif %}
+<h3>Controls in scope</h3><ul>{% for n, d in controls %}<li><strong>{{ n }}</strong>: <span class="small">{{ d }}</span></li>{% endfor %}</ul>
+{% if can('reviews.sign') %}
+<form class="stack" method="post" action="/reviews"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="rn">Review notes: what you reviewed, changes made, and risks considered</label><textarea id="rn" name="notes" maxlength="5000" required></textarea>
+<button type="submit">Sign annual review</button></form>{% endif %}
+</div>
+{% endblock %}

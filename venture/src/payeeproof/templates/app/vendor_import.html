@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Import vendors{% endblock %}
+{% block content %}
+<h1>Import vendors (CSV)</h1>
+{% if report %}<div class="flash">Imported {{ report.created }} vendor(s) and {{ report.accounts }} bank account(s). Imported accounts are <strong>unverified</strong> until you verify them.</div>{% endif %}
+<div class="card narrow">
+<p>Columns (header row required): <span class="mono">{{ columns|join(', ') }}</span>. Only <span class="mono">name</span> is required. The import is all-or-nothing.</p>
+<p class="small muted">Existing bank accounts are imported as <strong>unverified</strong>. Payments to them are flagged until each is verified through a change request, which is how you baseline your vendor master.</p>
+<form class="stack" method="post" action="/vendors/import" enctype="multipart/form-data"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="file">CSV file</label><input id="file" name="file" type="file" accept=".csv,text/csv" required>
+<button type="submit">Import</button></form></div>
+{% endblock %}

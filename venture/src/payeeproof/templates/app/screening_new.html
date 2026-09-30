@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Screen a payment file{% endblock %}
+{% block content %}
+<h1>Screen a payment file</h1>
+<div class="card narrow">
+<p>Upload the NACHA/ACH file your ERP or accounting system generated, <strong>before</strong> you upload it to your bank. PayeeProof checks each entry against your verified vendor master and payment history and checks the file's integrity. The file is not sent anywhere.</p>
+<form class="stack" method="post" action="/screenings" enctype="multipart/form-data"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="file">NACHA file (.ach, .txt)</label><input id="file" name="file" type="file" required>
+<button type="submit">Screen file</button></form></div>
+{% endblock %}

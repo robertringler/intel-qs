@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}Account{% endblock %}
+{% block content %}
+<h1>Your account</h1>
+<div class="card"><p><strong>{{ auth.user.full_name }}</strong> · {{ auth.user.email }} · role in {{ auth.org.name }}: <span class="badge">{{ auth.membership.role }}</span></p>
+<p class="small muted">Two-factor authentication: {{ 'enabled' if auth.user.totp_enabled else 'not enabled' }} · recovery codes left: {{ recovery_left }}</p></div>
+{% if memberships|length > 1 %}
+<div class="card"><h2>Switch organisation</h2>
+<form method="post" action="/switch-org" class="row"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<select name="org_id">{% for m, o in memberships %}<option value="{{ o.id }}" {% if o.id == auth.org.id %}selected{% endif %}>{{ o.name }} ({{ m.role }})</option>{% endfor %}</select>
+<button type="submit">Switch</button></form></div>
+{% endif %}
+<div class="card"><h2>Change password</h2>
+<form class="stack" method="post" action="/account/password"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="cp">Current password</label><input id="cp" name="current_password" type="password" required autocomplete="current-password">
+<label for="np">New password</label><input id="np" name="new_password" type="password" minlength="12" required autocomplete="new-password">
+<button type="submit">Change password</button></form></div>
+{% endblock %}

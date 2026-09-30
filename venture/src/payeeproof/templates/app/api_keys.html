@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}API keys{% endblock %}
+{% block content %}
+<h1>API keys</h1>
+{% if new_key %}<div class="warn"><strong>Copy this key now. It will not be shown again.</strong><div class="mono" id="newkey">{{ new_key }}</div><button type="button" class="secondary" data-copy="newkey">Copy</button></div>{% endif %}
+<p class="small">Use with <span class="mono">Authorization: Bearer &lt;key&gt;</span>. API reference: <a href="/api/v1/openapi.json">OpenAPI JSON</a>. API access requires the Growth or Scale plan.</p>
+<div class="table-wrap"><table><tr><th>Name</th><th>Prefix</th><th>Scopes</th><th>Created</th><th>Last used</th><th></th></tr>
+{% for k in keys %}<tr><td>{{ k.name }}</td><td class="mono">pp_{{ k.prefix }}_…</td><td class="small">{{ k.scopes|join(', ') }}</td><td>{{ k.created_at|dt }}</td><td>{{ k.last_used_at|dt }}</td>
+<td>{% if k.revoked_at %}revoked{% else %}<form method="post" action="/api-keys/{{ k.id }}/revoke" data-confirm="Revoke this key?"><input type="hidden" name="csrf_token" value="{{ csrf }}"><button type="submit" class="danger">Revoke</button></form>{% endif %}</td></tr>
+{% else %}<tr><td colspan="6">No keys.</td></tr>{% endfor %}</table></div>
+<div class="card narrow"><h2>Create a key</h2>
+<form class="stack" method="post" action="/api-keys"><input type="hidden" name="csrf_token" value="{{ csrf }}">
+<label for="kn">Name</label><input id="kn" name="name" type="text" maxlength="100" required>
+<label>Scopes</label>{% for s in scopes %}<div><label class="small"><input type="checkbox" name="scopes" value="{{ s }}"> {{ s }}</label></div>{% endfor %}
+<button type="submit">Create key</button></form></div>
+{% endblock %}
