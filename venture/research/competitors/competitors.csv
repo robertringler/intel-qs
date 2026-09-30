@@ -1,0 +1,10 @@
+name,category,segment,pricing_public,pricing_model,rails_covered,evidence_pack,account_validation,batch_file_screening,source_ids
+Trustpair,vendor verification,enterprise,no,quote/usage,multi (ERP connectors),partial,yes,no,S012;S013;S065
+Eftsure (Sis ID/Relish),verification network,enterprise/upper-MM,no,quote by spend+vendors,multi,partial,yes,unknown,S014;S015
+PaymentWorks,vendor onboarding,enterprise/public,no,subscription,onboarding,partial,yes,no,S060
+Trustmi,payment security,enterprise,no,subscription,multi,unknown,yes,unknown,S061
+BILL,AP suite,SMB-MM,yes (suite),subscription+payments,own rail only,no,yes (own),n/a,S062
+Ramp Bill Pay,AP suite,SMB-MM,yes,free/plus,own rail only,no,yes (own),n/a,S064
+JPM AVS,bank API,corporate clients,no,per inquiry,any (API),no,yes,batch 2000 records,S063
+EWS Verify Account,data API,corporates/banks,no,per inquiry,any (API),no,yes,no,S044
+Status quo,manual,all,free,n/a,any,no,no,no,S076

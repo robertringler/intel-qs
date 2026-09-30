@@ -1,0 +1,308 @@
+{
+  "scenarios": [
+    {
+      "scenario": {
+        "name": "pessimistic",
+        "free_signups_m1": 25,
+        "signup_growth_mom": 0.08,
+        "signup_growth_decay": 0.035,
+        "free_to_paid": 0.05,
+        "partner_paid_m": 1.5,
+        "arpa_month": 300,
+        "expansion_annual": 0.0,
+        "logo_churn_month": 0.02,
+        "gross_margin": 0.8,
+        "cac_paid_logo": 8000,
+        "base_opex_month_y1": 95000,
+        "opex_growth_annual": 0.35,
+        "starting_cash": 3000000
+      },
+      "years": [
+        {
+          "year": 1,
+          "paying_customers_end": 25,
+          "new_paying_logos": 26,
+          "arpa_month_end": 300.0,
+          "mrr_end": 7418,
+          "arr_end": 89017,
+          "revenue": 33724,
+          "gross_profit": 26980,
+          "s_and_m": 211846,
+          "opex_ex_sm": 1140000,
+          "ebitda": -1324867,
+          "cash_end": 1675133
+        },
+        {
+          "year": 2,
+          "paying_customers_end": 70,
+          "new_paying_logos": 57,
+          "arpa_month_end": 300.0,
+          "mrr_end": 21144,
+          "arr_end": 253725,
+          "revenue": 175218,
+          "gross_profit": 140174,
+          "s_and_m": 452146,
+          "opex_ex_sm": 1539000,
+          "ebitda": -1850972,
+          "cash_end": -175838
+        },
+        {
+          "year": 3,
+          "paying_customers_end": 126,
+          "new_paying_logos": 78,
+          "arpa_month_end": 300.0,
+          "mrr_end": 37731,
+          "arr_end": 452778,
+          "revenue": 359023,
+          "gross_profit": 287219,
+          "s_and_m": 624972,
+          "opex_ex_sm": 2077650,
+          "ebitda": -2415403,
+          "cash_end": -2591242
+        },
+        {
+          "year": 4,
+          "paying_customers_end": 188,
+          "new_paying_logos": 99,
+          "arpa_month_end": 300.0,
+          "mrr_end": 56261,
+          "arr_end": 675132,
+          "revenue": 571935,
+          "gross_profit": 457548,
+          "s_and_m": 789270,
+          "opex_ex_sm": 2804828,
+          "ebitda": -3136549,
+          "cash_end": -5727791
+        },
+        {
+          "year": 5,
+          "paying_customers_end": 251,
+          "new_paying_logos": 116,
+          "arpa_month_end": 300.0,
+          "mrr_end": 75405,
+          "arr_end": 904865,
+          "revenue": 799612,
+          "gross_profit": 639690,
+          "s_and_m": 926768,
+          "opex_ex_sm": 3786517,
+          "ebitda": -4073595,
+          "cash_end": -9801386
+        }
+      ],
+      "breakeven_month": null,
+      "min_cash": -9801386,
+      "peak_cash_need": 12801386,
+      "unit_economics": {
+        "ltv_gross_margin": 12000,
+        "ltv_to_cac": 1.5,
+        "cac_payback_months": 33.3
+      }
+    },
+    {
+      "scenario": {
+        "name": "base",
+        "free_signups_m1": 40,
+        "signup_growth_mom": 0.12,
+        "signup_growth_decay": 0.035,
+        "free_to_paid": 0.08,
+        "partner_paid_m": 4,
+        "arpa_month": 500,
+        "expansion_annual": 0.05,
+        "logo_churn_month": 0.012,
+        "gross_margin": 0.84,
+        "cac_paid_logo": 5000,
+        "base_opex_month_y1": 95000,
+        "opex_growth_annual": 0.35,
+        "starting_cash": 3000000
+      },
+      "years": [
+        {
+          "year": 1,
+          "paying_customers_end": 74,
+          "new_paying_logos": 77,
+          "arpa_month_end": 500.0,
+          "mrr_end": 37070,
+          "arr_end": 444838,
+          "revenue": 162201,
+          "gross_profit": 136249,
+          "s_and_m": 385714,
+          "opex_ex_sm": 1140000,
+          "ebitda": -1389465,
+          "cash_end": 1610535
+        },
+        {
+          "year": 2,
+          "paying_customers_end": 257,
+          "new_paying_logos": 204,
+          "arpa_month_end": 525.0,
+          "mrr_end": 134774,
+          "arr_end": 1617283,
+          "revenue": 1038258,
+          "gross_profit": 872137,
+          "s_and_m": 1020563,
+          "opex_ex_sm": 1539000,
+          "ebitda": -1687426,
+          "cash_end": -76891
+        },
+        {
+          "year": 3,
+          "paying_customers_end": 551,
+          "new_paying_logos": 349,
+          "arpa_month_end": 551.0,
+          "mrr_end": 303632,
+          "arr_end": 3643583,
+          "revenue": 2686745,
+          "gross_profit": 2256866,
+          "s_and_m": 1745262,
+          "opex_ex_sm": 2077650,
+          "ebitda": -1566046,
+          "cash_end": -1642937
+        },
+        {
+          "year": 4,
+          "paying_customers_end": 959,
+          "new_paying_logos": 514,
+          "arpa_month_end": 579.0,
+          "mrr_end": 555255,
+          "arr_end": 6663056,
+          "revenue": 5301752,
+          "gross_profit": 4453472,
+          "s_and_m": 2567541,
+          "opex_ex_sm": 2804828,
+          "ebitda": -918897,
+          "cash_end": -2561834
+        },
+        {
+          "year": 5,
+          "paying_customers_end": 1458,
+          "new_paying_logos": 669,
+          "arpa_month_end": 608.0,
+          "mrr_end": 885950,
+          "arr_end": 10631405,
+          "revenue": 8921553,
+          "gross_profit": 7494105,
+          "s_and_m": 3343104,
+          "opex_ex_sm": 3786517,
+          "ebitda": 364483,
+          "cash_end": -2197351
+        }
+      ],
+      "breakeven_month": 53,
+      "min_cash": -2698679,
+      "peak_cash_need": 5698679,
+      "unit_economics": {
+        "ltv_gross_margin": 35000,
+        "ltv_to_cac": 7.0,
+        "cac_payback_months": 11.9
+      }
+    },
+    {
+      "scenario": {
+        "name": "aggressive",
+        "free_signups_m1": 50,
+        "signup_growth_mom": 0.14,
+        "signup_growth_decay": 0.035,
+        "free_to_paid": 0.09,
+        "partner_paid_m": 6,
+        "arpa_month": 650,
+        "expansion_annual": 0.08,
+        "logo_churn_month": 0.009,
+        "gross_margin": 0.86,
+        "cac_paid_logo": 4500,
+        "base_opex_month_y1": 110000,
+        "opex_growth_annual": 0.35,
+        "starting_cash": 3000000
+      },
+      "years": [
+        {
+          "year": 1,
+          "paying_customers_end": 114,
+          "new_paying_logos": 117,
+          "arpa_month_end": 650.0,
+          "mrr_end": 74182,
+          "arr_end": 890180,
+          "revenue": 317854,
+          "gross_profit": 273355,
+          "s_and_m": 528748,
+          "opex_ex_sm": 1320000,
+          "ebitda": -1575393,
+          "cash_end": 1424607
+        },
+        {
+          "year": 2,
+          "paying_customers_end": 435,
+          "new_paying_logos": 347,
+          "arpa_month_end": 702.0,
+          "mrr_end": 305585,
+          "arr_end": 3667016,
+          "revenue": 2272794,
+          "gross_profit": 1954603,
+          "s_and_m": 1563425,
+          "opex_ex_sm": 1782000,
+          "ebitda": -1390822,
+          "cash_end": 33784
+        },
+        {
+          "year": 3,
+          "paying_customers_end": 1023,
+          "new_paying_logos": 661,
+          "arpa_month_end": 758.0,
+          "mrr_end": 775440,
+          "arr_end": 9305279,
+          "revenue": 6627917,
+          "gross_profit": 5700009,
+          "s_and_m": 2973950,
+          "opex_ex_sm": 2405700,
+          "ebitda": 320359,
+          "cash_end": 354143
+        },
+        {
+          "year": 4,
+          "paying_customers_end": 1919,
+          "new_paying_logos": 1048,
+          "arpa_month_end": 819.0,
+          "mrr_end": 1571385,
+          "arr_end": 18856614,
+          "revenue": 14572405,
+          "gross_profit": 12532269,
+          "s_and_m": 4717869,
+          "opex_ex_sm": 3247695,
+          "ebitda": 4566705,
+          "cash_end": 4920848
+        },
+        {
+          "year": 5,
+          "paying_customers_end": 3092,
+          "new_paying_logos": 1436,
+          "arpa_month_end": 884.0,
+          "mrr_end": 2734256,
+          "arr_end": 32811068,
+          "revenue": 26893928,
+          "gross_profit": 23128778,
+          "s_and_m": 6461954,
+          "opex_ex_sm": 4384388,
+          "ebitda": 12282436,
+          "cash_end": 17203284
+        }
+      ],
+      "breakeven_month": 30,
+      "min_cash": -196225,
+      "peak_cash_need": 3196225,
+      "unit_economics": {
+        "ltv_gross_margin": 62111,
+        "ltv_to_cac": 13.8,
+        "cac_payback_months": 8.1
+      }
+    }
+  ],
+  "monte_carlo": {
+    "draws": 5000,
+    "arr5_p10": 6016866.5,
+    "arr5_p50": 10481919.5,
+    "arr5_p90": 18705285.600000005,
+    "p_breakeven_within_60m": 0.6216,
+    "breakeven_month_p50_given_reached": 48.0,
+    "peak_cash_need_p50": 6789101.5,
+    "peak_cash_need_p90": 11440996.1
+  }
+}

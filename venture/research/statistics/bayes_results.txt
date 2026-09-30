@@ -1,0 +1,4 @@
+any payments fraud (attempted/actual): k=412/521; posterior mean 0.790; 95% credible interval [0.754, 0.823]
+BEC attempted/actual: k=328/521; posterior mean 0.629; 95% credible interval [0.587, 0.670]
+IC3 2025 mean reported BEC loss per complaint: $122981 (3.046e9 / 24768) [D]
+P(loss | attempt) for mid-market: insufficient evidence for statistical inference.

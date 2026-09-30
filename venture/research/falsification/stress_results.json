@@ -1,0 +1,42 @@
+[
+  {
+    "scenario": "S0 base",
+    "npv_mean": 8363400.392139141,
+    "npv_p50": 5411819.175679602,
+    "p_npv_positive": 0.78905,
+    "arr5_p50": 9345364.198710276,
+    "p_beats_runner_up": 0.68365
+  },
+  {
+    "scenario": "S1 SMB pricing (ARPA x0.6)",
+    "npv_mean": 1580336.6113174157,
+    "npv_p50": -151052.04390693177,
+    "p_npv_positive": 0.4875,
+    "arr5_p50": 5652359.162096798,
+    "p_beats_runner_up": 0.47815
+  },
+  {
+    "scenario": "S2 bundling wins (P compression 0.55-0.8)",
+    "npv_mean": 6363663.04355444,
+    "npv_p50": 3782739.8341588373,
+    "p_npv_positive": 0.73215,
+    "arr5_p50": 7861486.023222254,
+    "p_beats_runner_up": 0.63565
+  },
+  {
+    "scenario": "S3 paper compliance (penetration x0.5)",
+    "npv_mean": 1379695.2460526507,
+    "npv_p50": -67532.35884901555,
+    "p_npv_positive": 0.49365,
+    "arr5_p50": 4690436.744958981,
+    "p_beats_runner_up": 0.47405
+  },
+  {
+    "scenario": "S4 all adverse",
+    "npv_mean": -2619441.110224711,
+    "npv_p50": -3269812.7660581972,
+    "p_npv_positive": 0.1389,
+    "arr5_p50": 2357253.9493686785,
+    "p_beats_runner_up": 0.2507
+  }
+]
