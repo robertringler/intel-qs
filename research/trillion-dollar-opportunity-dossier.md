@@ -835,3 +835,9 @@ The binding constraint, restated precisely: **the trillion-scale economic pools 
 I have therefore not manufactured a trillion-dollar opportunity. I have identified the opportunity with the best available combination of enormous ceiling, genuine $0 entry, demonstrated willingness to pay, structural openness, and a falsification test that costs nothing and resolves in 120 days — and I have priced the trillion-dollar outcome at 1–3% rather than asserting it.
 
 `[INFERENCE]` The practical consequence for a founder is that this is the right thing to start **not because it will probably become a trillion-dollar company, but because its expected value is high, its downside is a profitable $300–800M acquisition, its entry cost is zero, and its central assumption can be disproved in four months for nothing.** Those are the properties that actually matter when starting from $0. The trillion-dollar tail is a reason to structure the company for durability — own the standard, accumulate the data, take the risk onto a balance sheet — rather than a forecast.
+
+---
+
+## Appendix C: Operational companion
+
+The 120-day operational plan implementing §22's blueprint for a specific vertical wedge — AI decisioning inside regulated insurance operations, entered via AI-assisted utilization management at health plans — is in **`120-day-execution-plan.md`** alongside this document. It carries the vertical-selection logic (derived from §19 falsification test 7), the ADR-1 taxonomy contents, outreach copy, pricing, the loss-data schema, the insurance-capacity track, and the three go/no-go gates with explicit kill criteria.
