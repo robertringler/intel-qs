@@ -16,10 +16,11 @@
 |---|---|
 | **The company** | Curtailment risk quantification → certification → parametric risk transfer. `WATTFLOCK_BUSINESS_MODEL_DOSSIER.md` |
 | **Demoted to adjacency** | One-ISO load origination desk. `WATTFLOCK_ORIGINATION_DESK_DOSSIER.md` — retained as the reference for that option, not as the plan |
-| **First action, 3 days, $0** | Count hard curtailment caps across the 25 large-load tariffs filed in 2026 |
+| **First action, 3 days, $0** | ~~Count hard curtailment caps across the 25 large-load tariffs filed in 2026~~ **RUN 3 Oct 2026 — INCONCLUSIVE at 23% coverage. See `TEST_01_CAP_COUNT_RESULT.md`.** Denominator was wrong (104 tracked, ~26 flexibility-bearing, not 25) and six primary sources are egress-blocked. Thesis neither killed nor validated |
+| **Next action, ~2 weeks, $0** | **The ERCOT single-node backtest** (dossier §26 test 2). It has overtaken the cap count in importance: the cap count asks whether there is a market, the backtest asks whether the product can be made at all — and it is answerable to primary-source standard here |
 | **First artifact, parallel, $0** | The Texas freeze-status map: who is paused, under which audit, what must clear on 10 December |
 | **Deferred indefinitely** | The originator-throughput experiment. 45–50 hours spent answering a question about a business we are not building |
-| **Reverses this decision** | >60% of the 25 tariffs carry hard annual curtailment-hour caps → the curtailment thesis degrades to ~$3.5M, and the origination desk becomes the live candidate again, in PJM |
+| **Reverses this decision** | >60% of flexibility-bearing tariffs carry hard annual curtailment-hour caps **and** the caps sit at or below the ~80 hr central expectation → thesis degrades to ~$3.5M and the origination desk becomes live again, in PJM. **Not triggered on 3 Oct evidence:** the caps found (100/200/225 hr) sit *above* the central case and *below* the 300–400 hr extreme, so they bound the tail and leave the decision range open |
 
 ---
 
@@ -183,7 +184,9 @@ NOW ──► Cap count (3 days, $0)                    ──► decides the th
 
 | Condition | Action |
 |---|---|
-| >60% of the 25 tariffs carry hard annual curtailment-hour caps | Curtailment degrades to ~$3.5M. Run the throughput experiment; origination becomes the live candidate, in PJM |
+| >60% of flexibility-bearing tariffs carry hard caps **set at or below ~80 hr/yr** | Curtailment degrades to ~$3.5M. Run the throughput experiment; origination becomes the live candidate, in PJM. **Status 3 Oct: inconclusive, 23% coverage. Caps found are 100–225 hr, i.e. above the central case** |
+| **New, from Test 01:** the addressable Phase-1 universe is ~26 flexibility-bearing tariff constructions, not 104 or 25; three-quarters of large-load tariffs are cost-allocation instruments with no curtailment pathway | Tightens §19 market sizing. Does not reverse the decision — it reduces the size of the thing chosen |
+| **New, from Test 01:** SPP CHILLS (FERC ER26-1323, live 1 Jul 2026) offers ≤7 years of non-firm service with **no cap on curtailment frequency or duration** and no planning obligation | Strengthens the thesis. An RTO-wide, formally unbounded exposure created by FERC order. First-customer candidate |
 | ERCOT backtest cannot reproduce Uri or summer 2023 within ±25% | The curtailment product cannot be built from public data. Stop; the method was the premise |
 | 0 of 20 targets sign a priced assessment in 60 days | Willingness to pay is absent. Re-price once, then stop |
 | No carrier will engage on the index, or loads the correlation at >40% of expected loss | The risk-transfer phase is unreachable. Business caps at assessment plus subscription, ~$3.5M, still at $0 capital |
