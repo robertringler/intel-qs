@@ -41,7 +41,7 @@ Four clocks converged in 2025–2026 and none of them can be unwound quickly:
 
 - **Demand inflected after 15 flat years.** US electricity consumption was approximately flat from 2005 to 2020 and is now rising `[FACT — EIA]`; EIA projects 4,135 BkWh in 2026 and 4,211 BkWh in 2027, with the commercial sector outgrowing residential **for the first time on record** `[FORECAST — EIA STEO Sept 2026]`.
 - **The constraint moved from capital to capacity.** Big-5 hyperscaler capex is running at roughly $700–800B in 2026 `[ESTIMATE — J.P. Morgan $697B; trackers $775–800B]` against transformer lead times of 128–160+ weeks `[FACT]` and a 61-month median interconnection wait `[FACT — LBNL, VERIFY]`.
-- **The right became separately priced.** Powered land in primary US markets traded at **$584,000 per MW in 2026, up 51%** `[FACT — CBRE, VERIFY]`. The market is now explicitly pricing the bare right to electricity, stripped of buildings, chips and tenants.
+- **The right became separately priced.** Powered land in primary US markets traded at **$584,000 per MW in 2026, up 51% year over year and 35% above its five-year average** `[FACT — Cushman & Wakefield, 2026 Data Center Development Cost Guide]`. The market is now explicitly pricing the bare right to electricity, stripped of buildings, chips and tenants.
 - **Regulators are writing the product definition right now.** FERC issued **Show Cause Orders to all six jurisdictional RTOs/ISOs on 18 June 2026** compelling them to justify or reform large-load interconnection tariffs `[FACT]`, having found PJM's co-located-load tariff unjust and unreasonable in December 2025 `[FACT]`. Order 2222 DER-aggregation implementations land between November 2026 and 2030 `[FACT]`.
 
 ## Why $0 is relevant — and not merely tolerable
@@ -150,7 +150,7 @@ This is the layer nobody sizes, because it has no market. I size it from the onl
 | PJM clearing price (3rd consecutive year at cap) | $325/MW-day = **$118,625/MW-yr** | `[FACT — PJM]` |
 | PJM cleared UCAP | 138,317.8 MW | `[FACT — PJM]` |
 | PJM uncapped counterfactual | **$29.7B** (clearing at $555/MW-day, +71%) | `[ESTIMATE — PJM simulation]` |
-| Powered land, primary US markets | **$584,000/MW, +51% YoY** | `[FACT — CBRE, VERIFY]` |
+| Powered land, primary US markets | **$584,000/MW, +51% YoY, +35% vs 5-yr avg** | `[FACT — Cushman & Wakefield]` |
 | Colocation rate, primary markets, mid-2026 | ~$204/kW/month = **~$2.45M/MW-yr** | `[FACT — CBRE, VERIFY]` |
 | Primary-market vacancy, H1 2026 | **1.4%** (N. Virginia 0.3%) | `[FACT — CBRE, VERIFY]` |
 | Under construction / preleased | 7,481 MW / 80.4% preleased | `[FACT — CBRE, VERIFY]` |
@@ -357,7 +357,7 @@ Conversely, developers and infrastructure funds *do* take positions, but vertica
 
 ### 11.2 The asset did not exist until approximately 2023
 
-You cannot build a market in a good that is not scarce. US electricity consumption changed little for more than a decade before 2020 `[FACT — EIA]`. In that world, interconnection was a *utility service you requested*, not a *right you competed for*. There was no price, because there was no shortage. The powered-land price series — $584,000/MW, **+51% in one year** `[FACT — VERIFY]` — is roughly three years old as a meaningful signal. Markets form in the decade after the underlying good becomes scarce, not before. **This opportunity is approximately three years old, which is the answer to "why now."**
+You cannot build a market in a good that is not scarce. US electricity consumption changed little for more than a decade before 2020 `[FACT — EIA]`. In that world, interconnection was a *utility service you requested*, not a *right you competed for*. There was no price, because there was no shortage. The powered-land price series — $584,000/MW, **+51% in one year** `[FACT — Cushman & Wakefield]` — is roughly three years old as a meaningful signal. Markets form in the decade after the underlying good becomes scarce, not before. **This opportunity is approximately three years old, which is the answer to "why now."**
 
 ### 11.3 Jurisdictional fragmentation made the national view unsellable
 
@@ -795,7 +795,8 @@ Grouped by the claim supported. All URLs as surfaced during research on 3 Octobe
 35. (as above) https://www.gminsights.com/industry-analysis/demand-response-market ; https://straitsresearch.com/report/demand-response-management-system-market ; https://www.grandviewresearch.com/industry-analysis/demand-response-management-systems-drms-market
 
 ### Data centers, powered land and supply chain
-36. **CBRE, Global Data Center Trends 2026** — https://www.cbre.com/insights/reports/global-data-center-trends-2026 — 2026 — commercial real estate primary research — *primary-market vacancy 1.4% H1 2026 (N. Virginia 0.3%); ~$204/kW/month mid-2026 (from ~$196 at end-2025, +4.3% H1); 7,481 MW under construction, 80.4% preleased; **powered land $584,000/MW in 2026, +51%**.* `[VERIFY]`
+36. **CBRE, Global Data Center Trends 2026** — https://www.cbre.com/insights/reports/global-data-center-trends-2026 — 2026 — commercial real estate primary research — *primary-market vacancy 1.4% H1 2026 (N. Virginia 0.3%); ~$204/kW/month mid-2026 (from ~$196 at end-2025, +4.3% H1); 7,481 MW under construction, 80.4% preleased.* `[VERIFY]`
+36a. **Cushman & Wakefield, 2026 Data Center Development Cost Guide** — https://www.cushmanwakefield.com/en/united-states/insights/data-center-development-cost-guide — 2026 — commercial real estate primary research — ***powered land $584,000/MW in 2026 YTD, +51% YoY, +35% above five-year average**; all-in greenfield development ~$17.6M/MW excluding chips; construction costs +21%/MW since Q4 2024.* **CORRECTION: earlier editions of this dossier attributed the powered-land figure to CBRE. It is Cushman & Wakefield. Verified 3 October 2026.**
 37. DataCenterDynamics on CBRE vacancy — https://www.datacenterdynamics.com/en/news/cloud-and-ai-demand-drives-north-american-data-center-vacancy-to-record-low-cbre/ — 2026 — trade press
 38. **Cleanview, "Bypassing the Grid: How Data Center Developers Are Building Their Own Power Plants"** — https://cleanview.co/reports/behind-the-meter-data-centers — 2026 — specialist research — *59 data centers / ~90 GW planned behind-the-meter, >25% of planned US capacity; ~2 GW online mid-2026, ~3 GW by end-2026; 75% gas.*
 39. Modo Energy, "Bring your own power" — https://modoenergy.com/research/en/bring-your-own-power-data-centers-explainer — 2026 — specialist analyst — *bridge power 1–2 years to first output; standalone off-grid 3–5 years.*
@@ -972,7 +973,7 @@ The brief asks a sharper question than most: not where capital is flowing, but *
 
 **3. Roughly $700–800B/yr of capex is being committed against an input the committers cannot secure.** 30–50% of hyperscaler sites are at risk of delay or cancellation on equipment backlogs `[ESTIMATE]`; only about one-third of the ~12 GW 2026 pipeline is under construction `[ESTIMATE]`. Capital is being allocated on the assumption that power is procurable, when the evidence is that it is the binding constraint. The visible symptom is 59 projects totalling ~90 GW planning to build their own power plants — of which ~2 GW is actually operating `[ESTIMATE]`.
 
-**4. The price signal that does exist is accelerating, which indicates the misallocation is widening rather than clearing.** Powered land at **$584,000/MW, +51% in a year** `[FACT — VERIFY]`, against 1.4% vacancy and 80.4% of construction preleased `[FACT — VERIFY]`. A 51% annual appreciation in the price of a production input, sustained alongside record-low vacancy, is the signature of a market where supply cannot respond to price — i.e. where the constraint is coordination and permission, not capital.
+**4. The price signal that does exist is accelerating, which indicates the misallocation is widening rather than clearing.** Powered land at **$584,000/MW, +51% in a year** `[FACT — Cushman & Wakefield]`, against 1.4% vacancy and 80.4% of construction preleased `[FACT — VERIFY]`. A 51% annual appreciation in the price of a production input, sustained alongside record-low vacancy, is the signature of a market where supply cannot respond to price — i.e. where the constraint is coordination and permission, not capital.
 
 ### The inference that produced the thesis
 

@@ -71,7 +71,7 @@ Taken strictly from the dossier. No products invented to enlarge the projection.
 |---|---|---|---|
 | Screens | $5–25k | $9–21k | Retained |
 | Retainers | implied | $96–198k/yr | Retained |
-| Success fees | $2–15k/MW (blend $6k) | $1.8–6.0k/MW (base $3.5k) | 1–3% of the $584k/MW powered-land price is the dossier's own anchor; **that price is `[VERIFY]`**, and most sites a new entrant finds are secondary/tertiary, not primary-market |
+| Success fees | $2–15k/MW (blend $6k) | $1.8–6.0k/MW (base $3.5k) | 1–3% of the $584k/MW powered-land price is the dossier's own anchor; that price is now verified `[FACT — Cushman & Wakefield]`, but it is a *primary-market* print and most sites a new entrant finds are secondary/tertiary |
 | **Supply brokerage** | **2.0 mils → $14.9M/GW-yr** | **0.25–0.85 mils (base 0.50)** | **Materially reduced.** The 1–5 mil benchmark is explicitly a *retail C&I* rate `[FACT]`. Loads above ~150 MW increasingly bypass retail entirely — registering for direct wholesale access, e.g. as an ERCOT Controllable Load Resource `[FACT]`. Applying a mid-market retail rate to a segment that structurally exits retail is the dossier's largest single error |
 | **Flexibility** | **$30k/MW-yr (25% of PJM's $118,625)** | **$4–16k/MW-yr (base $10k)** | **Materially reduced.** The load owner bears curtailment risk and holds the negotiating leverage; Emerald AI, at a $1.05bn valuation with $220M raised and NVIDIA backing, compresses the software share `[FACT]`. Also gated: PJM requires minimum capitalization *or posted collateral* `[FACT]` |
 | Contracted-capacity ownership | dossier §9 | **excluded** | Requires project finance and is a Year 6+ event. Including it in a five-year model would be unsupported |
@@ -105,7 +105,7 @@ LIFETIME REVENUE PER MW ORIGINATED  (NPV @ 15%)
 | **= Lifetime revenue / MW** | **$4,000** | **$15,000** | **$43,000** |
 | − carrying, account mgmt, commission | $2,000 | **$5,000** | $8,000 |
 | **= Lifetime gross profit / MW** | **$1,500 (39%)** | **$10,000 (66%)** | **$35,000 (81%)** |
-| **Share of the $584k/MW powered-land price** `[VERIFY]` | 0.65% | **2.64%** | 7.29% |
+| **Share of the $584k/MW powered-land price** `[FACT — C&W]` | 0.65% | **2.64%** | 7.29% |
 
 **The 2.64% figure is the single most useful sanity check in this memo.** The originator captures about two-and-a-half cents of every dollar of asset value it unlocks. That is a credible intermediary take rate — real-estate and M&A success fees run 1–5% `[ESTIMATE]`. The upside case's 7.29% is above that range and should be treated as the suspicious input, not the aspiration.
 
@@ -169,7 +169,7 @@ CAC payback   = CAC ÷ (ARPU × gross margin) × 12 months
 
 | Input | Use | Status |
 |---|---|---|
-| Powered land $584,000/MW, +51% | Anchors the success fee at 1–3% | **`[VERIFY]` Primary-source verification required** (CBRE; blocked by egress policy in the dossier's research environment) |
+| Powered land $584,000/MW, +51% | Anchors the success fee at 1–3% | `[FACT — Cushman & Wakefield, 2026 Data Center Development Cost Guide]`. **Verified 3 October 2026. Correction: earlier text attributed this to CBRE — it is Cushman & Wakefield.** The caveat that stands is that this is a *primary-market* print; secondary and tertiary sites clear lower |
 | PJM $325/MW-day = $118,625/MW-yr | Bounds the flexibility share | `[FACT — PJM 2028/29 BRA report, primary]` |
 | Retail broker 1–5 mils | Brokerage rate, *then rejected* for >150 MW loads | `[FACT — industry]`; inapplicability `[FACT]` |
 | Colocation ~$204/kW/month | Customer's cost-of-delay, i.e. willingness to pay | **`[VERIFY]` Primary-source verification required** |
