@@ -6,6 +6,15 @@
 **Pre-registered kill line:** **>60% capped → the curtailment thesis fails**, because the unbounded tail it monetises is bounded by rule.
 **Verdict:** **inconclusive on 23% coverage, from secondary sources only. Do not treat the thesis as validated. Do not treat it as killed.**
 
+> ### ⚠ SUPERSEDED IN PART — read `TEST_01_CORRECTION_AND_STATUS.md` first
+>
+> Three things in this file are wrong:
+> 1. **§6 concluded "the decision to build the curtailment opinion stands." It does not.** Inconclusive means the gate is not passed. **Nothing is being built.**
+> 2. **Two of the six data points are wrong.** Montana-Dakota is Rate 38 — **100 hr/yr at ≥500 kW**, a conventional industrial interruptible rate, not 200 hr at ≥10 MW. Colorado Springs' large-load schedule is **cost allocation** (10-yr contract, minimum bill, 36 months collateral); the interruptible rate is a separate >500 kW schedule.
+> 3. **The SPP CHILLS claim is over-stated.** It is non-firm conditional service with a supporting-resource trigger and a term countdown — ordinary non-firm priority, not a newly discovered unbounded liability. Customers are also **barred from market demand response**, which cuts against the model's flexibility revenue stream.
+>
+> **And Idaho Power Schedule 20, the one primary tariff reached, specifies the annual cap, the per-event cap, the seasonal and hourly window, the notice period and the price — which is the pre-stated fatal condition for this thesis.**
+
 ---
 
 ## 1. What stopped it
@@ -129,7 +138,7 @@ On the evidence, **all six determinable cases leave both the expected hours and 
 | SPP CHILLS: RTO-wide, uncapped, no planning obligation, live 1 July 2026 | **Good, and material.** A formally unbounded exposure created by FERC order |
 | Caps are contested rather than settled | **Good.** Parties lobby for what they lack |
 
-**The decision stands: build the curtailment opinion, not the origination desk.** Nothing here favours the origination desk, whose market remains closed by the Texas freeze. But the next test is now more decisive than this one was, and it should be run before anything is built.
+**Corrected:** the gate is **not passed**, so nothing is being built. Nothing here favours the origination desk either, whose market remains closed by the Texas freeze. See `TEST_01_CORRECTION_AND_STATUS.md` for the corrected status and the primary reads that come next.
 
 ---
 
@@ -140,7 +149,7 @@ On the evidence, **all six determinable cases leave both the expected hours and 
 | **1** | **Finish this count properly** — the ~26 flexibility-bearing constructions, from primary filings via Halcyon's tracker, the LBNL brief, the EEI list and state dockets. Needs an unblocked browser | $0, 2–3 days | 23% coverage from secondary sources is not a result |
 | **2** | **Run the backtest feasibility test** (dossier §26 test 2) — reconstruct curtailment hours for one ERCOT node 2008–2026 under one named construction; validate against Uri (Feb 2021) and summer 2023 | $0, ~2 weeks | **This is now the more decisive test.** If public data cannot reproduce known events within ±25%, the product cannot be built regardless of what the tariffs say |
 | 3 | **Read the SPP CHILLS tariff and FERC order ER26-1323 in full** | $0, 1 day | The clearest uncapped exposure found. If a CHILLS taker will pay for a distribution, that is the first customer |
-| 4 | Publish the Texas freeze-status map | $0, ~1 week | Unchanged. The honest Q4 artifact and the door to the first conversations |
+| ~~4~~ | ~~Publish the Texas freeze-status map~~ **DROPPED** | — | It was the demoted origination desk's artifact and should not have survived the demotion |
 | 5 | **Do not** run the originator-throughput experiment | — | Still answering a question about a business that is not being built |
 
 **Test 2 has overtaken test 1 in importance.** The cap count asks whether there is a market; the backtest asks whether the product can be made at all. The second is answerable to primary-source standard in this environment, and a failure there kills the thesis more cleanly than any tariff survey.

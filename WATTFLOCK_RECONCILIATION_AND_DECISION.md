@@ -8,7 +8,17 @@
 
 ## The decision
 
-**WATTFLOCK is the curtailment opinion: the independent quantifier and certifier of curtailment risk for flexible large loads, with parametric risk transfer as its earned second act.**
+> ### ⚠ STATUS 3 OCTOBER 2026 — GATE NOT PASSED, NOTHING IS BEING BUILT
+>
+> The cap count returned **inconclusive** at 23% coverage, and its own inputs then
+> proved unreliable: 2 of 6 data points wrong, the SPP CHILLS claim over-stated, and
+> **Idaho Power Schedule 20 — the one primary tariff reached — specifies the annual
+> cap, per-event cap, seasonal and hourly window, notice and price**, which is the
+> pre-stated fatal condition. The ranking below still holds *between* the two theses.
+> It is **not** authority to start the curtailment company. See
+> `TEST_01_CORRECTION_AND_STATUS.md`.
+
+**WATTFLOCK is the curtailment opinion: the independent quantifier and certifier of curtailment risk for flexible large loads, with parametric risk transfer as its earned second act** — *subject to the gate above, which has not been passed.*
 
 **The origination desk is not WATTFLOCK. It is a possible adjacency, entered later, only if the curtailment business's own customers pull it there.** It is not a parallel bet and not a plan.
 
@@ -18,7 +28,7 @@
 | **Demoted to adjacency** | One-ISO load origination desk. `WATTFLOCK_ORIGINATION_DESK_DOSSIER.md` — retained as the reference for that option, not as the plan |
 | **First action, 3 days, $0** | ~~Count hard curtailment caps across the 25 large-load tariffs filed in 2026~~ **RUN 3 Oct 2026 — INCONCLUSIVE at 23% coverage. See `TEST_01_CAP_COUNT_RESULT.md`.** Denominator was wrong (104 tracked, ~26 flexibility-bearing, not 25) and six primary sources are egress-blocked. Thesis neither killed nor validated |
 | **Next action, ~2 weeks, $0** | **The ERCOT single-node backtest** (dossier §26 test 2). It has overtaken the cap count in importance: the cap count asks whether there is a market, the backtest asks whether the product can be made at all — and it is answerable to primary-source standard here |
-| **First artifact, parallel, $0** | The Texas freeze-status map: who is paused, under which audit, what must clear on 10 December |
+| ~~**First artifact, parallel, $0**~~ | ~~The Texas freeze-status map~~ **DROPPED 3 Oct** — it is the demoted desk's artifact. No artifact is published until the primary reads are done |
 | **Deferred indefinitely** | The originator-throughput experiment. 45–50 hours spent answering a question about a business we are not building |
 | **Reverses this decision** | >60% of flexibility-bearing tariffs carry hard annual curtailment-hour caps **and** the caps sit at or below the ~80 hr central expectation → thesis degrades to ~$3.5M and the origination desk becomes live again, in PJM. **Not triggered on 3 Oct evidence:** the caps found (100/200/225 hr) sit *above* the central case and *below* the 300–400 hr extreme, so they bound the tail and leave the decision range open |
 

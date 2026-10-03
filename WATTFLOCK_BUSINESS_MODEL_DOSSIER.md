@@ -6,16 +6,27 @@
 
 **Evidence labels:** `[FACT]` `[ESTIMATE]` `[FORECAST]` `[INFERENCE]` `[ASSUMPTION]` `[HYPOTHESIS]` `[VERIFY]`
 
-> ## ✅ STATUS: THIS IS THE PLAN
+> ## ⚠ STATUS: SELECTED, BUT GATE NOT PASSED — NOT BEING BUILT
 >
 > **Decided 3 October 2026.** Selected over the origination-desk thesis
 > (`WATTFLOCK_ORIGINATION_DESK_DOSSIER.md`, now a deferred adjacency).
 > Reasoning, sequencing and the condition that would reverse it:
 > `WATTFLOCK_RECONCILIATION_AND_DECISION.md`.
 >
-> **First action — 3 days, $0:** count hard annual curtailment-hour caps
-> across the 25 large-load tariffs filed in 2026. **Kill line: >60% capped.**
-> This is §26 test 1 below, and it decides the thesis before anything is built.
+> **The gate test was run on 3 October 2026 and did not pass.** Inconclusive at
+> 23% coverage; 2 of 6 data points wrong; the SPP CHILLS claim over-stated; and
+> **Idaho Power Schedule 20 — the one primary tariff reached — publishes the annual
+> cap (225 hr), the per-event cap (10 hr), the seasonal window (15 Jun–15 Sep), the
+> hourly window (1–11pm weekdays), the notice period and the price ($0.0453/kW per
+> event hour).** That is the pre-stated fatal condition: a cap low enough, and a
+> window specified enough, that the residual is a spreadsheet. One tariff is not a
+> population, so the thesis is **actively doubted rather than killed** — but it is
+> not built. Next step is primary reads only: `TEST_01_CORRECTION_AND_STATUS.md`.
+>
+> **Also newly doubted:** CHILLS customers are barred from market demand-response
+> participation. The flexibility stream at §20 — $10k/MW-yr, 22% of Year-5 base
+> revenue — assumes a load owner has flexibility value to concede. On the one
+> genuinely curtailable-by-design service found, it does not.
 >
 > **Texas context added since this document was written.** Governor Abbott's
 > 3 August (ERCOT ≥75 MW energization), 14 September (TWDB water reporting)
