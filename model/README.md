@@ -114,3 +114,57 @@ Note the asymmetry the plan makes explicit: a *favourable* interview median of
 160 MW becomes a planning figure of 96 MW after the haircut, which re-runs to
 Year-5 revenue of $4.75M — below the $5.81M base case. The base case already sat
 at the optimistic edge of this parameter.
+
+## WATTFLOCK model
+
+Supports `../WATTFLOCK_BUSINESS_MODEL_DOSSIER.md`. Curtailment-risk
+quantification → certification → parametric risk transfer for flexible
+large loads.
+
+```sh
+python3 wattflock.py     # scenarios, market-ceiling test, summary, sensitivity
+```
+
+Three identities enforced by `assert` / verified after the final parameter set:
+
+```
+beginning cash + FCF                      = ending cash
+cover_MW(y-1) × (1 - attrition) + new     = cover_MW(y)
+sum of the five revenue streams           = total revenue
+```
+
+### Structural findings the model exists to produce
+
+1. **The assessment market is too small to be the business.** One-time fees
+   against 10–40 GW/yr of flexible load signed nationally give a total
+   addressable assessment market of $2.3M–$13.3M/yr at 100% share. Only
+   premium commission (recurring, scales with MW) and index subscriptions
+   reach meaningful size.
+2. **The business is demand-constrained, not capacity-constrained.** Delivery
+   capacity exceeds demand in every year of every scenario. The two top
+   sensitivity drivers tie exactly — WATTFLOCK's share of US flexible sites
+   and the national rate of flexible-load signings — because they multiply
+   into the same term. Neither is relieved by hiring or by capital. This is
+   the inverse of the origination model in `final.py`, which was capacity-
+   constrained at ~110 MW per originator-year.
+3. **$0 start holds.** Base and upside never go cash-negative; downside needs
+   $30k. Contrast the origination model's $441k.
+
+### Two corrections made during the build
+
+Same error pattern as the origination model, caught by checking outputs
+against industry norms rather than by inspection:
+
+1. **MGA operating cost was omitted**, giving a 66% Year-5 EBITDA margin and
+   $708k revenue/FTE. Underwriting, actuarial, claims, policy admin and
+   reinsurance broking now sit in COGS at 52–78% of commission revenue.
+   Year-5 base margin is now 38.6%, inside the specialty-distribution range.
+2. **The covered book was asserted, not derived.** `cover_mw` is now
+   computed from assessments delivered × conversion × site MW, carried
+   forward with attrition, so the risk-transfer stream is tied to the
+   assessment stream rather than assumed independently.
+
+A third artefact was fixed: the downside collapsed to literally zero revenue
+because assessment demand scaled with the hiring factor, and the solver
+drives hiring to zero. The founder still sells, so demand now retains a 30%
+floor independent of hiring.
