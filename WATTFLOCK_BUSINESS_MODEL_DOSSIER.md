@@ -6,6 +6,27 @@
 
 **Evidence labels:** `[FACT]` `[ESTIMATE]` `[FORECAST]` `[INFERENCE]` `[ASSUMPTION]` `[HYPOTHESIS]` `[VERIFY]`
 
+> ## ✅ STATUS: THIS IS THE PLAN
+>
+> **Decided 3 October 2026.** Selected over the origination-desk thesis
+> (`WATTFLOCK_ORIGINATION_DESK_DOSSIER.md`, now a deferred adjacency).
+> Reasoning, sequencing and the condition that would reverse it:
+> `WATTFLOCK_RECONCILIATION_AND_DECISION.md`.
+>
+> **First action — 3 days, $0:** count hard annual curtailment-hour caps
+> across the 25 large-load tariffs filed in 2026. **Kill line: >60% capped.**
+> This is §26 test 1 below, and it decides the thesis before anything is built.
+>
+> **Texas context added since this document was written.** Governor Abbott's
+> 3 August (ERCOT ≥75 MW energization), 14 September (TWDB water reporting)
+> and 21 September 2026 (TCEQ, all data center permits, all state agencies,
+> islanded facilities included) directives have closed the Texas market for
+> energization-dependent products. This business is **not** energization-
+> dependent — it prices contract terms, not permits — but the freeze does
+> slow the national flow of flexible-load agreements, which is one of the two
+> top sensitivity drivers at §20. Treat the base-case 8–24 GW/yr of national
+> signings as the assumption most exposed to it.
+
 ---
 
 ## 0. A note on what I was given, and the first redesign

@@ -1,6 +1,28 @@
 # WATTFLOCK — Business Model & Economic Viability Dossier
 ### Origination-desk thesis · refactored edition
 
+> ## ⛔ STATUS: NOT THE PLAN — retained as the reference for a deferred adjacency
+>
+> **Decided 3 October 2026.** WATTFLOCK is the **curtailment opinion**
+> (`WATTFLOCK_BUSINESS_MODEL_DOSSIER.md`). This document describes an
+> origination desk that is **not** being built, for two reasons recorded in
+> `WATTFLOCK_RECONCILIATION_AND_DECISION.md`:
+>
+> 1. **Its launch market is closed.** KC-1 and KC-2 below suspend the exact
+>    good it sells — an energization date — across every Texas agency, at
+>    every project size, including islanded behind-the-meter configurations
+>    by name. The fallback this document proposes is inside the freeze.
+> 2. **It is capacity-constrained** at ~110 MW per originator-year, a ceiling
+>    that neither effort nor capital moves ($3.0M bought +9% of Year-5
+>    revenue). The curtailment business is demand-constrained, which is a
+>    problem that responds to evidence.
+>
+> **This file remains accurate and is worth keeping.** It is the reference
+> for the adjacency, revisited only if (a) the cap count kills the curtailment
+> thesis, or (b) the Texas freeze lifts with a dated eligibility path *and*
+> originator throughput clears 60 MW. Do **not** run the 45–50 hour throughput
+> experiment until one of those holds.
+
 **Date:** 3 October 2026 · refactored 3 October 2026
 **Posture:** adversarial. The name is not a thesis. The question is whether a new entrant with about $0–$1,000 can sell a measurable economic outcome in this market, and what that sale actually is.
 **Scope:** United States, one market first. Not a pitch.
@@ -65,14 +87,24 @@ The regulatory and market facts that gate products. Cited by ID throughout.
 
 | ID | Constraint | Detail | Gates | Label |
 |---|---|---|---|---|
-| **KC-1** | **ERCOT ≥75 MW energization pause** | ERCOT paused energization of new large-load data centers and crypto facilities of 75 MW or greater, pursuant to Governor Abbott's **3 August 2026** directive. Still in force at ERCOT's 11 September 2026 Batch Zero update. **Community Impact Review Report** due to the Commission by **10 December 2026**. PUCT Docket 59220 **[R3]** | Honest promises of near-term ERCOT energization | `[FACT]` |
-| **KC-2** | **Texas statewide environmental permitting freeze** | On ~**21 September 2026** Governor Abbott directed TCEQ to pause environmental permits for **all** Texas data centers pending a statewide audit — broader than KC-1, which covers ERCOT energization at ≥75 MW **[R4 — addition; the source document predates this]** | Reinforces KC-1. Does not change the thesis | `[FACT]` |
+| **KC-1** | **ERCOT ≥75 MW energization pause** | ERCOT paused energization of new large-load data centers and crypto facilities of 75 MW or greater, pursuant to Governor Abbott's **3 August 2026** directive. Still in force at ERCOT's 11 September 2026 Batch Zero update, which covers **6,608 MW** of provisionally-included load. **Two** reports are due to the Commission by **10 December 2026**, both discussed at the PUCT's 17 December open meeting: the **Batch Zero Eligibility Verification Report** (loads provisionally in Batch Zero) and the **Community Impact Review Report** (medium loads 25–75 MW and large data center/crypto facilities, built from RFIs to the interconnecting TSPs and DSPs). PUCT Docket 59220 **[R3 — corrected]** | Honest promises of near-term ERCOT energization | `[FACT]` |
+| **KC-2** | **Texas statewide data center permitting freeze** | **21 September 2026:** Governor Abbott directed TCEQ to halt **all** permit issuance for data center projects until the ERCOT and TWDB audits complete, and directed that **no state agency** proceed with regulatory approvals related to data center development in the interim. The pause applies **regardless of whether the project uses ERCOT grid power, including fully islanded facilities relying on behind-the-meter generation**. TCEQ owes the Governor a compliance report by **19 October 2026**. Predecessor: **14 September 2026**, TWDB directed to compel water-use reporting from major users including data centers, with legal consequences for non-compliance, and to partner with ERCOT on the audit **[R4 — addition; the source document predates this]** | **Closes the Texas market for the product this document sells, including the fallback it proposes.** See the consequence note below | `[FACT]` |
 | **KC-3** | **PUCT broker registration** | PURA §39.3555; 16 TAC §25.112. A broker may not take title to energy. REPs may not bid to an unregistered broker. Registration fee reported as $0; foreign qualification and registered agent are not `[ESTIMATE — practitioner guide; confirm on the PUCT form]` | **T3** (supply residual) | `[FACT]` |
 | **KC-4** | **ISO collateral and Order 2222 dates** | PJM accepts minimum capitalization **or** posted collateral. Order 2222: region-specific registration, telemetry, 100 kW minimum aggregation; PJM energy and ancillary services not until February 2028 on the prior compliance schedule `[re-check before relying]` | **T4** (flexibility share) | `[FACT]` |
 | **KC-5** | **FERC large-load show-cause** | 18 June 2026. Six jurisdictional RTOs ordered to justify or reform large-load tariffs. >50 MW on transmission >69 kV. Five reform categories including flexible large loads and co-location. Filings due ~17 August 2026 | Changes the product definition. Licenses nothing | `[FACT]` |
 | **KC-6** | **FERC Order 2023 site control** | Site-control requirement pushed speculators out of generation queues | Makes landowner control the scarce input | `[FACT]` |
 
-**The consequence of KC-1 and KC-2 together, stated plainly:** a company whose product is *"where 100 MW energizes"* cannot honestly sell ERCOT energization dates in Q4 2026. This is a reason to build the free artifact on ERCOT — where the public data is best and the pain is most acute — while taking the first paid screen wherever a buyer appears, and to redefine the Texas product as **queue eligibility and behind-the-meter pathing** rather than an energization date.
+### The consequence of KC-1 and KC-2 together — this changes the operating conclusion
+
+A company whose product is *"where 100 MW energizes"* cannot honestly sell ERCOT energization dates in Q4 2026. **And the fallback this document originally proposed — redefining the Texas product as "queue eligibility and behind-the-meter pathing" — is also closed**, because:
+
+- KC-2 covers **environmental permits at any size**, not only ≥75 MW energization. Any real project needs an air permit, a water authorisation, or a local entitlement, and those are inside the freeze.
+- KC-2 covers **islanded and behind-the-meter facilities explicitly**. Behind-the-meter gas does not sit outside TCEQ — a turbine needs an air permit.
+- KC-2 extends to **every state agency**, so there is no adjacent approval to route around it.
+
+**The honest Texas artifact in Q4 2026 is therefore a map of who is paused, under which audit, and what would have to clear on 10 December — not a path to energization, and not a path around one.** That is a real, urgent, time-boxed product (see §11), but it is a credibility artifact and a short-dated engagement, not the business.
+
+**Operational conclusion, changed:** the first paid screen should be sold **outside Texas** until the two 10 December reports and the TCEQ freeze have a recorded end. PJM is the obvious alternate, and it reintroduces the capacity-market complication that the ERCOT choice at §7 was specifically meant to avoid. **[R6 — the earlier refactor log claimed KC-2 only reinforced the existing conclusion. That was wrong. It invalidates the stated fallback and forces a market change.]**
 
 ---
 
@@ -197,7 +229,7 @@ The four transactions, their prices and their gates, are consolidated in [GL](#g
 Tradeoffs, not a ranking table:
 
 - **Data centers vs industrial load.** Data centers have the higher cost of delay — KF-3 is a published price, whereas a factory's cost of delay is plant-specific and slower to underwrite. Industrial load is less competed for by CBRE and JLL. **Start with data centers because the loss is priced; add industrial when a referral appears.**
-- **ERCOT vs PJM.** ERCOT has the large-load queue (KF-4), retail choice, and the best public data — but also KC-1 and KC-2. PJM has the capacity price (KF-6) and the co-location docket, and no retail-choice simplicity; a founder in Ohio is already in PJM-ATSI, which cleared at the same cap. **Practical resolution: build the public artifact on ERCOT because the data is better, and take the first paid screen in whichever market returns a buyer. Do not open both.**
+- **ERCOT vs PJM.** ERCOT has the large-load queue (KF-4), retail choice, and the best public data — but also KC-1 and KC-2. PJM has the capacity price (KF-6) and the co-location docket, and no retail-choice simplicity; a founder in Ohio is already in PJM-ATSI, which cleared at the same cap. **Practical resolution, revised for KC-2: build the public artifact on ERCOT because the data is better and the freeze is the most urgent question in the market — but sell the first paid screen outside Texas.** PJM is the alternate, accepting the capacity-market complication. **Do not open both for paid delivery.**
 - **Developer vs landowner as first payer.** Developers have budget and urgency. Landowners hold the asset KC-6 made scarce and often do not know it; exclusive marketing agreements cost a signature and are the supply side. **They are not the first revenue.**
 - **Utility account teams.** Useful interviewees, bad customers. They do not buy origination.
 
@@ -473,7 +505,7 @@ Ending cash  = beginning cash + FCF
 | 3 | **Utilities will not provide the shortlist** | They do not market landowners against each other. They will answer a planner call — a substitute for one fact, not for the comparison |
 | 4 | **Aggregators copy origination** | Voltus and CPower want flexible megawatts, not parcels. They copy T4, which WATTFLOCK should not be selling |
 | 5 | **Software companies add a screen** | Enverus can. It will be a feature on a subscription, not a success-fee desk, for the role-conflict reason. **Good enough to cap price** |
-| 6 | **Regulatory kill** | A state large-load moratorium, or KC-1 extending past 2026, or KC-2 broadening further, removes the energization product. **The screen survives only if rewritten as eligibility and behind-the-meter pathing** |
+| 6 | **Regulatory kill — now partly realised** | KC-1 and KC-2 have already removed the energization product in Texas, and KC-2 closes the eligibility-and-BTM fallback with it. **The screen survives only by changing market, not by changing framing.** Watch the 19 October TCEQ compliance report and the two 10 December filings |
 | 7 | **Problem disappears** | Inference efficiency cutting data-center energy per unit of compute 10–100×, or transformer lead times normalising. Both plausible inside the decade. Electrification of other loads is the hedge, and it is slower |
 | 8 | **Commodification** | Mandated machine-readable hosting capacity kills a data product. **Does not kill a signed-milestone fee** — another reason not to be a data product |
 | 9 | **Downturn** | Origination fees fall. A firm with no balance sheet shrinks to the founder and survives. **That is the attractive property** |
@@ -551,7 +583,7 @@ Ranked by the damage their failure does.
 | 1 | Steady-state closings per originator reach well above 60 MW/year | `[HYPOTHESIS]` — **no evidence** | §25 test 1 |
 | 2 | A stranger will pay $12,000 for a deliverability memo before any date has been proven | `[HYPOTHESIS]` | §25 test 2 |
 | 3 | The signed milestone can be defined tightly enough that the fee is not argued away | `[ASSUMPTION]` | [GL](#gl--product-gating-ladder) — within the founder's control |
-| 4 | KC-1 ends, or buyers will pay for eligibility and behind-the-meter pathing instead of an energization date | `[HYPOTHESIS]` — **and KC-2 has since broadened the freeze** | §25 test 6 |
+| 4 | KC-1 and KC-2 end, **or** the launch market moves outside Texas. The eligibility-and-BTM fallback is **closed**, not an alternative | `[FACT that the fallback is closed]`; `[HYPOTHESIS]` that a non-Texas market works for a solo founder | §25 test 6 |
 | 5 | KF-1 is the right anchor for a fee on secondary sites. **Likely overstates** | `[ASSUMPTION]` | §25 test 2 implicitly |
 | 6 | Retail brokerage at 0.50 mils attaches to 35% of originated MW. **Likely overstates for >150 MW** | `[ASSUMPTION]` | §25 test 3 |
 | 7 | Flexibility revenue is shareable at $10,000/MW-year from Year 3. **Weakest revenue assumption** | `[HYPOTHESIS]` | §25 test 4 |
@@ -570,7 +602,7 @@ Ranked by the damage their failure does.
 | 3 | Supplier mils on >50 MW, and the MW cutoff | Cutoff median < 100 MW, or rate < 0.15 mil | $0, same calls |
 | 4 | Flexibility share a load owner will concede | Median < 8% | $0, same calls |
 | 5 | DSO imposed on a new vendor | Median > 75 days | $0 |
-| 6 | ERCOT Community Impact Review Report, **10 December 2026** (KC-1); plus TCEQ audit status (KC-2) **[R3, R4]** | Pause extended with no eligibility path a third party can advise on | $0, read the filings |
+| 6 | **Three dated filings:** TCEQ compliance report to the Governor, **19 Oct 2026**; ERCOT **Batch Zero Eligibility Verification Report** and **Community Impact Review Report**, both **10 Dec 2026**, PUCT open meeting 17 Dec **[R3 corrected, R4]** | Freeze extended with no dated end, or no eligibility path a third party can advise on → Texas stays closed and the launch market must be PJM | $0, read the filings |
 | **7** | One non-obvious substation claim, checked by a practitioner | Wrong on the first check | The artifact itself |
 
 **Run 1 and 7 before formation. Run 2 before any software.** If 1 fails, stop. If 2 fails and 1 holds, the business is a land-agent practice paid only on milestones, and the screen price or the buyer is wrong — **re-quote once, then stop.**
@@ -612,14 +644,16 @@ Thesis, numbers, conclusions and recommendation are unchanged. What changed:
 ### Corrections
 - **[R1] Source corrected.** KF-1 ($584,000/MW, +51%) is **Cushman & Wakefield's 2026 Data Center Development Cost Guide** — verified, and the source document had it right. **Note for the wider repository:** `WATTFLOCK_BUSINESS_MODEL_DOSSIER.md` and `FIVE_YEAR_FINANCIAL_MODEL.md` both attribute this figure to CBRE. That attribution is wrong and should be corrected in both. The C&W guide also adds "+35% above the five-year average," now in KF-1.
 - **[R2] Internal inconsistency fixed in place.** The source document used the LBNL 61-month / 13% / 75% statistics as problem evidence in §1 and §2, then disclosed at §24.9 that they are generation-and-storage figures and "not the load-queue base rate." The caveat is now attached to KF-5 where the figure is introduced, so it governs every use. §24 retains it as a methodological note rather than an assumption.
-- **[R3] Characterisation corrected.** The 10 December 2026 filing is the **Community Impact Review Report** to the Commission, not an "eligibility verification report." Verification is a separate process. PUCT Docket 59220 added.
+- **[R3] Characterisation corrected, then corrected again.** The first refactor claimed the 10 December filing "is the Community Impact Review Report, not an eligibility verification report." **That was backwards and deleted a filing ERCOT named.** ERCOT's 11 September 2026 Batch Zero update schedules **two** reports for 10 December: the **Batch Zero Eligibility Verification Report** (loads provisionally in Batch Zero, 6,608 MW) and the **Community Impact Review Report** (medium loads 25–75 MW and large data center/crypto facilities, from RFIs to TSPs and DSPs). Both are discussed at the PUCT's 17 December open meeting. Both are restored at KC-1 and §25 test 6. Docket 59220 stands.
 - **[R5] Artifact explained.** The §16 screens row falling from 9 to 6 in Year 3 is the delivery-capacity crowd-out at §18, not a typo. Previously unexplained and readable as an error.
 
 ### Addition
-- **[R4] KC-2 added.** On ~21 September 2026 Governor Abbott directed TCEQ to pause environmental permits for **all** Texas data centers pending a statewide audit — broader in scope than KC-1's ≥75 MW ERCOT energization pause. The source document predates it. **It reinforces the document's existing conclusion** about not promising ERCOT energization dates; it does not change the thesis. Carried into §14, §20.6, §24.4 and §25.6.
+- **[R4] KC-2 added, and [R6] its significance corrected.** On 21 September 2026 Governor Abbott directed TCEQ to halt **all** data center permit issuance pending the ERCOT and TWDB audits, directed that **no state agency** proceed with related approvals, and made the pause apply **regardless of grid use, including fully islanded behind-the-meter facilities**. TCEQ owes a compliance report on 19 October 2026. A 14 September 2026 TWDB directive on water-use reporting precedes it.
+
+  **[R6] The first refactor log said this "reinforces the existing conclusion … it does not change the thesis." That was wrong.** The document's stated fallback — redefine the Texas product as queue eligibility and behind-the-meter pathing — is **inside** the freeze: environmental permits at any size, islanded facilities named explicitly, every state agency. The operating conclusion changes: the first paid screen must be sold outside Texas, PJM is the alternate, and PJM reintroduces the capacity-market complication §7 chose ERCOT to avoid. Carried into KC-2, the consequence note, §7, §14, §20.6, §24.4 and §25.6.
 
 ### Not changed
-Every figure, scenario, price, kill line, rejection and recommendation. The $12,000 screen, the $3,500/MW success fee, the $5.81M / 19 FTE / $8–20M Year-5 base case, the ~$441k peak deficit, the 60 MW kill line, the refusal of venture capital, and the conclusion that WATTFLOCK is not defensible as a platform, data company, or aggregator.
+Every figure, scenario, price, kill line, rejection and recommendation. The **market** changed (Texas → outside Texas for paid delivery); the **economics** did not. The $12,000 screen, the $3,500/MW success fee, the $5.81M / 19 FTE / $8–20M Year-5 base case, the ~$441k peak deficit, the 60 MW kill line, the refusal of venture capital, and the conclusion that WATTFLOCK is not defensible as a platform, data company, or aggregator.
 
 ### Unresolved — needs a decision, not a refactor
-This repository now holds **two different WATTFLOCK theses**: this origination desk, and the curtailment-risk quantification and certification business in `WATTFLOCK_BUSINESS_MODEL_DOSSIER.md` ($7.25M Year-5 base, $0 capital, demand-constrained). They are not variants of one another — different customer, different product, different gating. Reconciling them, or picking one, is a substantive decision outside the scope of a refactor.
+This repository now holds **two different WATTFLOCK theses**: this origination desk, and the curtailment-risk quantification and certification business in `WATTFLOCK_BUSINESS_MODEL_DOSSIER.md` ($7.25M Year-5 base, $0 capital, demand-constrained). They are not variants of one another — different customer, different product, different gating. Reconciling them, or picking one, is a substantive decision outside the scope of a refactor. **It has since been made: see `WATTFLOCK_RECONCILIATION_AND_DECISION.md`.**
